@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Badge,
-  Form,
-  Card,
-  Button,
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
 
 import MainSideBar from "./components/MainSideBar";
@@ -19,8 +11,9 @@ import "./App.css";
 const clientId = process.env.REACT_APP_CLIENT_ID;
 
 function App() {
+  const [allIssues, setAllIssues] = useState([]);
   const [issues, setIssues] = useState([]);
-  // const checkLabel = issues[0].labels[0].name;
+  const [searchTerm, setSearchTerm] = useState("ll");
   // const [searchInput, setSearchInput] = useState("");
 
   const getIssues = async () => {
@@ -28,8 +21,32 @@ function App() {
     const result = await fetch(url);
     const data = await result.json();
     setIssues(data);
-    console.log(data);
+    setAllIssues(data);
+
     // console.log(searchInput);
+  };
+
+  const search = async searchTerm => {
+    // const url =
+    //   "https://api.github.com/search/repositories?sort=stars&order=desc&q=${searchTerm}&language=assembly";
+    // const result = await fetch(url);
+    // const data = await result.json();
+    console.log(searchTerm);
+  };
+
+  const findOnPage = term => {
+    // console.log(term);
+    if (term === "") {
+      setIssues(allIssues);
+    } else {
+      const filteredIssues = issues.filter(issue => {
+        if (issue.title.toLowerCase().includes(term.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+      setIssues(filteredIssues);
+    }
   };
 
   useEffect(() => {
@@ -71,10 +88,24 @@ function App() {
         <Row>
           <Col>
             <Row>
-              <Form.Control size="lg" type="text" placeholder="Search" />
-              {/* <Button>Search</Button> */}
-              {/* <br></br> */}
-              {/* <Button>New Issues</Button> */}
+              <input
+                name="search"
+                type="text"
+                onAfterChange={event => search(event.target.value)}
+                className="form-control input-lg"
+                placeholder="Search Issue..."
+              />
+              <Button onClick={() => search()}>Search</Button>
+
+              {/* <input
+                name="search"
+                width="30px"
+                type="text"
+                id="findOnPage"
+                onChange={event => findOnPage(event.target.value)}
+                className="form-control input-lg"
+                placeholder="Find on page..."
+              /> */}
               <IssuesPage issues={issues} />
             </Row>
           </Col>
