@@ -9,29 +9,24 @@ import {
   Col
 } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
+import Moment from 'react-moment';
+
 
 function RepoCard(props) {
   return (
     <Card>
       <Card.Header>{props.repo.full_name}</Card.Header>
-      {/* <Card.Body>
-        <Card.Title></Card.Title>
+       <Card.Body>
+        <Card.Title>{props.repo.description}</Card.Title>
         <Card.Text>
-          <Markdown>{repo.body.slice(250, 390)}</Markdown>
-          <img alt="loser" width="50px" src={repo.user.avatar_url}></img>
-          <a href={repo.user.html_url}>{repo.user.login}</a>
-          <p>
-            {repo.labels[0]
-              ? repo.labels.map(label => {
-                  return <Badge variant="success">{label.name}</Badge>;
-                })
-              : ""}
-          </p>
-          <Badge variant={repo.state === "open" ? "primary" : "danger"}>
+          <Badge variant="primary">{props.repo.language}</Badge>
+          {props.repo.license && <Badge variant="primary">{props.repo.license.name}</Badge>}
+          {"Updated at "}<Moment fromNow>{props.repo.updated_at}</Moment>
+          {/* <Badge variant={repo.state === "open" ? "primary" : "danger"}>
             {repo.state}
-          </Badge>
+          </Badge> */}
         </Card.Text>
-      </Card.Body> */}
+      </Card.Body>
     </Card>
   );
 }
