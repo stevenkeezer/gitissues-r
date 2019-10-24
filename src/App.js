@@ -8,7 +8,7 @@ import IssuesPage from "./pages/IssuesPage";
 
 import "./App.css";
 
-const clientId = process.env.REACT_APP_CLIENT_ID;
+const clientId = "57091af873a54cbc4d71";
 
 function App() {
   const [allIssues, setAllIssues] = useState([]);
@@ -17,7 +17,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showIssues, setShowIssues] = useState(true);
   const [repo, setRepo] = useState([]);
-
+  const [totalSearchResult, setTotalSearchResult] = useState(0)
   const getIssues = async () => {
     const url = "https://api.github.com/repos/facebook/react/issues";
     const result = await fetch(url);
@@ -32,11 +32,12 @@ function App() {
     setSearchInput(input);
   };
 
-  const search = async () => {
-    const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${currentPage}`;
+  const search = async (page) => {
+    const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
     console.log(url);
     const result = await fetch(url);
     const data = await result.json();
+    setTotalSearchResult(data.total_count)
     setRepo([...data.items]);
     setShowIssues(false);
   };
@@ -59,6 +60,7 @@ function App() {
   useEffect(() => {
     getIssues();
   }, []);
+
 
   useEffect(() => {
     const existingToken = sessionStorage.getItem("token");
@@ -90,7 +92,7 @@ function App() {
   });
   return (
     <div className="App">
-      <MainSideBar />
+      {/* <MainSideBar */}
       <Container>
         <Row>
           <Col>
@@ -102,7 +104,10 @@ function App() {
                 className="form-control input-lg"
                 placeholder="Search Issue..."
               />
-              <Button onClick={() => search()}>Search</Button>
+            <Button onClick={() => {
+                setCurrentPage(1)
+                search(currentPage)
+              }}>Search</Button>
 
               {/* <input
                 name="search"
@@ -116,7 +121,13 @@ function App() {
               {showIssues ? (
                 <IssuesPage issues={issues} />
               ) : (
-                <RepoPage repo={repo} />
+                <RepoPage
+                  search={search}
+                  repo={repo}
+                  setTotalSearchResult={setTotalSearchResult}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  />
               )}
             </Row>
           </Col>
