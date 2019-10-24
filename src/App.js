@@ -3,10 +3,19 @@ import MainSideBar from "./components/MainSideBar";
 
 import "./App.css";
 
-const clientId = process.env.REACT_APP_CLIENT_ID
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
 function App() {
+  const getIssues = async params => {
+    const url = "https://api.github.com/repos/facebook/react/issues";
+    const result = await fetch(url);
+    const data = await result.json();
+    console.log(data);
+  };
+
   useEffect(() => {
+    getIssues();
+
     const existingToken = sessionStorage.getItem("token");
     const accessToken =
       window.location.search.split("=")[0] === "?access_token"

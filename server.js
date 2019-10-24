@@ -21,7 +21,6 @@ http
           }
         },
         (err, r, body) => {
-          console.log("I got a request!");
           res.writeHead(301, {
             Location: "http://localhost:3000/?" + body
           });
