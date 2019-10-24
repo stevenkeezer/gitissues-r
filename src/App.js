@@ -8,7 +8,7 @@ import IssuesPage from "./pages/IssuesPage";
 
 import "./App.css";
 
-const clientId = process.env.REACT_APP_CLIENT_ID;
+const clientId = "57091af873a54cbc4d71";
 
 function App() {
   const [allIssues, setAllIssues] = useState([]);
@@ -90,7 +90,7 @@ function App() {
   });
   return (
     <div className="App">
-      <MainSideBar />
+      {/* <MainSideBar */}
       <Container>
         <Row>
           <Col>
