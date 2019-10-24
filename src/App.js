@@ -104,7 +104,10 @@ function App() {
                 className="form-control input-lg"
                 placeholder="Search Issue..."
               />
-            <Button onClick={() => search(currentPage)}>Search</Button>
+            <Button onClick={() => {
+                setCurrentPage(1)
+                search(currentPage)
+              }}>Search</Button>
 
               {/* <input
                 name="search"
