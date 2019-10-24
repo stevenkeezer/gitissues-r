@@ -5,8 +5,9 @@ import Pagination from 'react-bootstrap/Pagination'
 export default function RepoPage(props) {
 
   const handleOnChange = (page) => {
-    props.setCurrentPage(page)
-    props.search()
+    props.setCurrentPage(Number(page))
+    console.log("CurrentPage", page)
+    props.search(page)
   }
 
   let active = props.currentPage;
@@ -25,11 +26,11 @@ export default function RepoPage(props) {
         <RepoCard repo={repo} />
       ))}
       <Pagination>
-        <Pagination.First />
-        <Pagination.Prev />
+        <Pagination.First onClick={() => handleOnChange(1)} />
+        <Pagination.Prev onClick={() => handleOnChange(props.currentPage-1)} />
         {items}
-        <Pagination.Next />
-        <Pagination.Last />
+        <Pagination.Next onClick={() => handleOnChange(props.currentPage+1)} />
+        <Pagination.Last onClick={() => handleOnChange(props.totalSearchResult)} />
       </Pagination>
     </div>
   );
