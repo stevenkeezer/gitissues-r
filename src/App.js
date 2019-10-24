@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
-import MainSideBar from "./components/MainSideBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Badge,
+  Form,
+  Card,
+  Button,
+  Container,
+  Row,
+  Col
+} from "react-bootstrap";
+import Markdown from "markdown-to-jsx";
+
+import MainSideBar from "./components/MainSideBar";
+import IssuesPage from "./pages/IssuesPage";
 
 import "./App.css";
 
@@ -9,6 +20,8 @@ const clientId = process.env.REACT_APP_CLIENT_ID;
 
 function App() {
   const [issues, setIssues] = useState([]);
+  // const checkLabel = issues[0].labels[0].name;
+  // const [searchInput, setSearchInput] = useState("");
 
   const getIssues = async () => {
     const url = "https://api.github.com/repos/facebook/react/issues";
@@ -16,6 +29,7 @@ function App() {
     const data = await result.json();
     setIssues(data);
     console.log(data);
+    // console.log(searchInput);
   };
 
   useEffect(() => {
@@ -56,23 +70,13 @@ function App() {
       <Container>
         <Row>
           <Col>
-            {issues.map(issue => {
-              return (
-                <Card>
-                  <Card.Header>
-                    {issue.number} {issue.title}
-                  </Card.Header>
-                  <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text>
-                      {issue.body}
-                      <a href="/">{issue.user.login}</a>
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                </Card>
-              );
-            })}
+            <Row>
+              <Form.Control size="lg" type="text" placeholder="Search" />
+              {/* <Button>Search</Button> */}
+              {/* <br></br> */}
+              {/* <Button>New Issues</Button> */}
+              <IssuesPage issues={issues} />
+            </Row>
           </Col>
         </Row>
       </Container>
