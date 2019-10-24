@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
-
+import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./pages/IssuesPage";
 
@@ -13,8 +13,10 @@ const clientId = process.env.REACT_APP_CLIENT_ID;
 function App() {
   const [allIssues, setAllIssues] = useState([]);
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("ll");
-  // const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showIssues, setShowIssues] = useState(true);
+  const [repo, setRepo] = useState([]);
 
   const getIssues = async () => {
     const url = "https://api.github.com/repos/facebook/react/issues";
@@ -26,12 +28,17 @@ function App() {
     // console.log(searchInput);
   };
 
-  const search = async searchTerm => {
-    // const url =
-    //   "https://api.github.com/search/repositories?sort=stars&order=desc&q=${searchTerm}&language=assembly";
-    // const result = await fetch(url);
-    // const data = await result.json();
-    console.log(searchTerm);
+  const handleChange = input => {
+    setSearchInput(input);
+  };
+
+  const search = async () => {
+    const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${currentPage}`;
+    console.log(url);
+    const result = await fetch(url);
+    const data = await result.json();
+    setRepo([...data.items]);
+    setShowIssues(false);
   };
 
   const findOnPage = term => {
@@ -91,7 +98,7 @@ function App() {
               <input
                 name="search"
                 type="text"
-                onAfterChange={event => search(event.target.value)}
+                onChange={event => handleChange(event.target.value)}
                 className="form-control input-lg"
                 placeholder="Search Issue..."
               />
@@ -106,7 +113,11 @@ function App() {
                 className="form-control input-lg"
                 placeholder="Find on page..."
               /> */}
-              <IssuesPage issues={issues} />
+              {showIssues ? (
+                <IssuesPage issues={issues} />
+              ) : (
+                <RepoPage repo={repo} />
+              )}
             </Row>
           </Col>
         </Row>
