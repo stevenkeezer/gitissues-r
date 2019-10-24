@@ -1,10 +1,10 @@
 ### Required Features 🎯
 
-[ ] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format owner/repo-name, e.g. facebook/react.
+- [ ] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format owner/repo-name, e.g. facebook/react.
 
-[ ] If the repository does not exist, the user should see a proper error message.
+- [ ] If the repository does not exist, the user should see a proper error message.
 
-[ ] The user should be able to see the following information for each issue:
+- [x] The user should be able to see the following information for each issue:
 
 Issue Title * Number of the issue
 Owner of the Issue
@@ -13,7 +13,7 @@ Body of the Issue
 Label - note the color as returned by the API.
 State of Issue (Open/Closed).
 
-- [] The user should be able to see multiple pages of results, by clicking a pagination control.
+- [x] The user should be able to see multiple pages of results, by clicking a pagination control.
 
 ### Optional User Stories
 
