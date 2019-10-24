@@ -60,6 +60,7 @@ function App() {
     getIssues();
   }, []);
 
+
   useEffect(() => {
     const existingToken = sessionStorage.getItem("token");
     const accessToken =
@@ -116,7 +117,12 @@ function App() {
               {showIssues ? (
                 <IssuesPage issues={issues} />
               ) : (
-                <RepoPage repo={repo} />
+                <RepoPage
+                  search={search}
+                  repo={repo}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  />
               )}
             </Row>
           </Col>
