@@ -1,7 +1,7 @@
 import React from "react";
 import IssueCard from "./IssueCard";
 
-export default function IssuesPage({ issues }) {
+export default function CreateIssues({ issues }) {
   if(!issues) return "Error while loading API";
   return (
     <div>

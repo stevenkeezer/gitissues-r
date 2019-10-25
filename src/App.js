@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
-import RepoPage from "./components/RepoPage"; 
+import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
-import HomePage from "./components/HomePage"
+import HomePage from "./components/HomePage";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
@@ -17,10 +17,13 @@ function App() {
   const [issues, setIssues] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [showIssues, setShowIssues] = useState(true);
+  const [showIssues, setShowIssues] = useState(false);
+  const [showRepo, setShowRepo] = useState(false);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
-  const [issueName, setIssueName] = useState("react-native-community/react-native-navbar")
+  const [issueName, setIssueName] = useState(
+    "react-native-community/react-native-navbar"
+  );
   const getComments = async () => {
     const url =
       "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
@@ -49,7 +52,7 @@ function App() {
     const url = `https://api.github.com/repos/${issueName}/issues`;
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data)
+    console.log(data);
     setIssues(data);
     setAllIssues(data);
   };
@@ -58,15 +61,15 @@ function App() {
     const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
     const result = await fetch(url);
     const data = await result.json();
-    setTotalSearchResult(Math.round(data.total_count/30));
+    setTotalSearchResult(Math.round(data.total_count / 30));
     setRepo(data.items);
-    setShowIssues(false); 
+    setShowRepo(true);
   };
 
   const handleChange = input => {
+    console.log("User Searching", input);
     setSearchInput(input);
   };
-
 
   const findOnPage = term => {
     // console.log(term);
@@ -95,6 +98,7 @@ function App() {
       window.location.search.split("=")[0] === "?access_token"
         ? window.location.search.split("=")[1]
         : null;
+    console.log("accessToken", accessToken.split("&")[0])
 
     if (!accessToken && !existingToken) {
       window.location.replace(
@@ -105,7 +109,7 @@ function App() {
     if (accessToken) {
       // console.log(`New accessToken: ${accessToken}`);
 
-      sessionStorage.setItem("token", accessToken);
+      sessionStorage.setItem("token", accessToken.split("&")[0]);
       // this.state = {
       //   token: accessToken
       // };
@@ -119,9 +123,12 @@ function App() {
   });
   return (
     <div className="App">
-      <HomePage />
-      {// <MainSideBar />
-      // <CommentSection /> 
+      {!showIssues && !showRepo && (
+        <HomePage search={search} handleChange={handleChange} />
+      )}
+      {
+        // <MainSideBar />
+        // <CommentSection />
       }
       <Container>
         <Row>
@@ -137,9 +144,8 @@ function App() {
           </div>
           <Col>
             <Row>
-              {showIssues ? (
-                <IssuesPage issues={issues} />
-              ) : (
+              {showIssues && <IssuesPage issues={issues} />}
+              {showRepo && (
                 <RepoPage
                   search={search}
                   repo={repo}
