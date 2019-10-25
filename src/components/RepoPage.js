@@ -1,6 +1,6 @@
 import React from "react";
 import RepoCard from "../components/RepoCard";
-import Pagination from 'react-bootstrap/Pagination'
+import Pagination from "react-bootstrap/Pagination";
 
 export default function RepoPage(props) {
 
