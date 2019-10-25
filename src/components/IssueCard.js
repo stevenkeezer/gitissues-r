@@ -12,14 +12,14 @@ import Markdown from "markdown-to-jsx";
 
 function IssueCard({ issue }) {
   return (
-    <Card>
+    <Card className="mb-2">
       <Card.Header>
-        {issue.number} {issue.title}
+        #{issue.number} {issue.title}
       </Card.Header>
       <Card.Body>
         <Card.Title></Card.Title>
         <Card.Text>
-          <Markdown>{issue.body.slice(250, 390)}</Markdown>
+          <Markdown>{issue.body.slice(250, 350)}</Markdown>
           <img alt="loser" width="50px" src={issue.user.avatar_url}></img>
           <a href={issue.user.html_url}>{issue.user.login}</a>
           <p>
