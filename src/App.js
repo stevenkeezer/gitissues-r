@@ -91,28 +91,21 @@ function App() {
   return (
     <div className="App">
       <MainSideBar />
+
       <Container>
         <Row>
+          <div className="inputContainer m-3">
+            <input
+              name="search"
+              type="text"
+              onChange={event => handleChange(event.target.value)}
+              className="form-control input-lg"
+              placeholder="Search Issue..."
+            />
+            <Button onClick={() => search()}>Search</Button>
+          </div>
           <Col>
             <Row>
-              <input
-                name="search"
-                type="text"
-                onChange={event => handleChange(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Search Issue..."
-              />
-              <Button onClick={() => search()}>Search</Button>
-
-              {/* <input
-                name="search"
-                width="30px"
-                type="text"
-                id="findOnPage"
-                onChange={event => findOnPage(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Find on page..."
-              /> */}
               {showIssues ? (
                 <IssuesPage issues={issues} />
               ) : (
@@ -127,3 +120,15 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <input
+                name="search"
+                width="30px"
+                type="text"
+                id="findOnPage"
+                onChange={event => findOnPage(event.target.value)}
+                className="form-control input-lg"
+                placeholder="Find on page..."
+              /> */
+}

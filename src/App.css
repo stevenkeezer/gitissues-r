@@ -1,16 +1,38 @@
-.App {
+/* .App {
+  display: flex;
+  justify-content: center;
+} */
+
+.sidenav---sidenav---_2tBP {
+  position: fixed;
+  background-color: #24292e;
+}
+
+.card-text {
+  word-wrap: break-word;
+}
+.card-header {
+  font-weight: bold;
+}
+
+.row {
+  display: inline-block;
+}
+
+.container {
   display: flex;
   justify-content: center;
 }
 
-.sidenav---sidenav---_2tBP {
-  position: fixed;
+.inputContainer {
+  display: flex;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
-.card {
-  margin: 30px;
-}
-
-.findOnPage {
-  width: 40px !important;
+@media (max-width: 759px) {
+  .sidenav---sidenav---_2tBP {
+    transform: translateX(-100%);
+    transition: all 0.3s ease-out;
+  }
 }
