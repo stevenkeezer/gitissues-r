@@ -1,61 +1,39 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-import { Badge, Card } from "react-bootstrap";
 
-function RepoCard(props) {
-  return (
-    <Card className="mb-2">
-      <Card.Header>
-        #{props.repo.owner.id} {props.repo.full_name}
-      </Card.Header>
-      <Card.Body>
-        <Card.Title></Card.Title>
-        <Card.Text>
-          {/* <Markdown></Markdown> */}
-          <p>{props.repo.created_at}</p>
-          <img alt="loser" width="50px" src={props.repo.owner.avatar_url}></img>
-          <a href={props.repo.html_url}>{props.repo.owner.login}</a>
-          {/* <p>
-            {repo.labels[0]
-              ? repo.labels.map(label => {
-                  return <Badge variant="success">{label.name}</Badge>;
-                })
-              : ""}
-          </p> */}
-          <Badge></Badge>
-=======
 import {
   Badge,
-  Form,
   Card,
-  Button,
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
-import Markdown from "markdown-to-jsx";
-import Moment from 'react-moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 
+} from "react-bootstrap";
+import Moment from "react-moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function RepoCard(props) {
   return (
     <Card>
       <Card.Header>{props.repo.full_name}</Card.Header>
-       <Card.Body>
+      <Card.Body>
         <Card.Title>{props.repo.description}</Card.Title>
         <Card.Text>
-          <p> <FontAwesomeIcon icon={faStar} /> {props.repo.stargazers_count > 1000 ? Math.round(props.repo.stargazers_count/1000)+"k" : props.repo.stargazers_count} </p>
+          <p>
+            {" "}
+            <FontAwesomeIcon icon={faStar} />{" "}
+            {props.repo.stargazers_count > 1000
+              ? Math.round(props.repo.stargazers_count / 1000) + "k"
+              : props.repo.stargazers_count}{" "}
+          </p>
           <Badge variant="primary">{props.repo.language}</Badge>
-          {props.repo.license && <Badge variant="primary">{props.repo.license.name}</Badge>}
-          {"Updated at "}<Moment fromNow>{props.repo.updated_at}</Moment>
+          {props.repo.license && (
+            <Badge variant="primary">{props.repo.license.name}</Badge>
+          )}
+          {"Updated at "}
+          <Moment fromNow>{props.repo.updated_at}</Moment>
           {/* <Badge variant={repo.state === "open" ? "primary" : "danger"}>
             {repo.state}
           </Badge> */}
           <br></br>
           <button>Click me</button>
->>>>>>> 989268236e1f2311e0f00fd6f209991eb35b5031
         </Card.Text>
       </Card.Body>
     </Card>
