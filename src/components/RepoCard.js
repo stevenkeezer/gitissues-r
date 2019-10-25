@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 
-import {
-  Badge,
-  Card,
-
-} from "react-bootstrap";
+import { Badge, Card } from "react-bootstrap";
 import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function RepoCard(props) {
+  console.log(props.repo);
   return (
-    <Card>
+    <Card className="mb-2">
       <Card.Header>{props.repo.full_name}</Card.Header>
       <Card.Body>
         <Card.Title>{props.repo.description}</Card.Title>

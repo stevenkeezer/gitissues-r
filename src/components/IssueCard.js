@@ -25,7 +25,11 @@ function IssueCard({ issue }) {
           <p>
             {issue.labels[0]
               ? issue.labels.map(label => {
-                  return <Badge variant="success">{label.name}</Badge>;
+                  return (
+                    <Badge style={{ backgroundColor: `#${label.color}` }}>
+                      {label.name}
+                    </Badge>
+                  );
                 })
               : ""}
           </p>

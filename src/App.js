@@ -5,10 +5,11 @@ import Markdown from "markdown-to-jsx";
 import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./pages/IssuesPage";
-
+import CommentSection from "./components/CommentSection";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
+const secretKey = "95ac48be7ce1ae15a7a616b0bda3150003e7176f";
 
 function App() {
   const [allIssues, setAllIssues] = useState([]);
@@ -18,14 +19,37 @@ function App() {
   const [showIssues, setShowIssues] = useState(true);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
+
+  const getComments = async () => {
+    const url =
+      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
+    const result = await fetch(url);
+    const data = await result.json();
+    console.log(data);
+  };
+
+  const postComments = async () => {
+    // let data = new URLSearchParams();
+    const url =
+      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/2/comments";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token c240e4198a36c78f514c344cc5955641d7348b17`
+      },
+      body: { body: "this is a new comment" },
+      json: true
+    });
+    console.log(response);
+  };
+
   const getIssues = async () => {
     const url = "https://api.github.com/repos/facebook/react/issues";
     const result = await fetch(url);
     const data = await result.json();
     setIssues(data);
     setAllIssues(data);
-
-    // console.log(searchInput);
   };
 
   const handleChange = input => {
@@ -34,7 +58,6 @@ function App() {
 
   const search = async page => {
     const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
-    console.log(url);
     const result = await fetch(url);
     const data = await result.json();
     setTotalSearchResult(data.total_count);
@@ -59,6 +82,8 @@ function App() {
 
   useEffect(() => {
     getIssues();
+    postComments();
+    getComments();
   }, []);
 
   useEffect(() => {
@@ -92,7 +117,7 @@ function App() {
   return (
     <div className="App">
       <MainSideBar />
-
+      <CommentSection />
       <Container>
         <Row>
           <div className="inputContainer m-3">
