@@ -17,7 +17,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showIssues, setShowIssues] = useState(true);
   const [repo, setRepo] = useState([]);
-  const [totalSearchResult, setTotalSearchResult] = useState(0)
+  const [totalSearchResult, setTotalSearchResult] = useState(0);
   const getIssues = async () => {
     const url = "https://api.github.com/repos/facebook/react/issues";
     const result = await fetch(url);
@@ -32,12 +32,12 @@ function App() {
     setSearchInput(input);
   };
 
-  const search = async (page) => {
+  const search = async page => {
     const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
     console.log(url);
     const result = await fetch(url);
     const data = await result.json();
-    setTotalSearchResult(data.total_count)
+    setTotalSearchResult(data.total_count);
     setRepo([...data.items]);
     setShowIssues(false);
   };
@@ -60,7 +60,6 @@ function App() {
   useEffect(() => {
     getIssues();
   }, []);
-
 
   useEffect(() => {
     const existingToken = sessionStorage.getItem("token");
@@ -92,12 +91,8 @@ function App() {
   });
   return (
     <div className="App">
-<<<<<<< HEAD
       <MainSideBar />
 
-=======
-      {/* <MainSideBar */}
->>>>>>> 989268236e1f2311e0f00fd6f209991eb35b5031
       <Container>
         <Row>
           <div className="inputContainer m-3">
@@ -112,30 +107,6 @@ function App() {
           </div>
           <Col>
             <Row>
-<<<<<<< HEAD
-=======
-              <input
-                name="search"
-                type="text"
-                onChange={event => handleChange(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Search Issue..."
-              />
-            <Button onClick={() => {
-                setCurrentPage(1)
-                search(currentPage)
-              }}>Search</Button>
-
-              {/* <input
-                name="search"
-                width="30px"
-                type="text"
-                id="findOnPage"
-                onChange={event => findOnPage(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Find on page..."
-              /> */}
->>>>>>> 989268236e1f2311e0f00fd6f209991eb35b5031
               {showIssues ? (
                 <IssuesPage issues={issues} />
               ) : (
@@ -145,7 +116,7 @@ function App() {
                   setTotalSearchResult={setTotalSearchResult}
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
-                  />
+                />
               )}
             </Row>
           </Col>
