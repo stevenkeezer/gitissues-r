@@ -44,3 +44,120 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+/* .App {
+  display: flex;
+  justify-content: center;
+} */
+*{
+  font-family: Montserrat;
+}
+
+
+.sidenav---sidenav---_2tBP {
+  position: fixed;
+  background-color: #24292e;
+}
+
+.card-text {
+  word-wrap: break-word;
+}
+.card-header {
+  font-weight: bold;
+}
+
+.row {
+  display: inline-block;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.inputContainer {
+  display: flex;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+@media (max-width: 759px) {
+  .sidenav---sidenav---_2tBP {
+    transform: translateX(-100%);
+    transition: all 0.3s ease-out;
+  }
+}
+
+
+.issue-card {
+  margin-top: 50px;
+}
+
+.logo {
+  height: 43px;
+  width: 171px;
+}
+
+.background-home-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 551px;
+  width: 667px;
+  margin-top: 30px;
+
+}
+section{
+  background-color: #15275F;
+  height: 700px;
+  padding-top: 30px;
+}
+
+.btn-search {
+  color: #15275F;
+  border: 1px solid #15275F;
+}
+
+.btn-search:hover {
+  background-color: #15275F;
+  border: 1px solid #15275F;
+}
+
+.title-homepage {
+  color: #15275F;
+  font-weight: 600;
+  margin: 30px;
+  line-height: 1.7;
+}
+
+.background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-title-homepage {
+  /* margin-top: -400px; */
+  margin-right: 60px;
+  background-color: white;
+  height: 400px;
+  width: 400px;
+  border-radius: 7px;
+}
+
+.content-homepage {
+  color: #15275F;
+  margin: 30px;
+  line-height: 1.8;
+}
+
+.page-footer {
+  background-color: #051139;
+  color: white;
+}
+
+.btn-signup {
+  color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+}

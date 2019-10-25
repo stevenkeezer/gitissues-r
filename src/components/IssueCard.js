@@ -11,6 +11,7 @@ import {
 import Markdown from "markdown-to-jsx";
 
 function IssueCard({ issue }) {
+
   return (
     <Card className="mb-2">
       <Card.Header>
