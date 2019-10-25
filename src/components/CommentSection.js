@@ -16,13 +16,14 @@ function CommentsSection() {
   useEffect(() => getComments(), []);
 
   const postComment = async comment => {
+    console.log(comment);
     const url =
       "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `token 8f603ec455a618b86372f100693cd5f1b5a6a3ab`,
+        Authorization: `token 7a5afcbe5fe70a647a103b88b0be428da641bd32`,
         Accept: "application/vnd.github.golden-comet-preview+json"
       },
       body: JSON.stringify({ body: `${comment}` })
@@ -54,12 +55,6 @@ function CommentsSection() {
   const [tasks, setTasks] = useState([]);
 
   const addTask = text => setTasks([...tasks, { text }], postComment(text));
-
-  const toggleTask = index => {
-    const newTasks = [...tasks];
-    newTasks[index].isCompleted = !newTasks[index].isCompleted;
-    setTasks(newTasks);
-  };
 
   const removeTask = index => {
     const newTasks = [...tasks];
