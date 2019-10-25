@@ -32,35 +32,12 @@ function App() {
   );
   const [modalShow, setModalShow] = React.useState(false);
 
-  const getComments = async () => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
-    const result = await fetch(url);
-    const data = await result.json();
-    // console.log(data);
-  };
-
-  const postComment = async () => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token 95ac48be7ce1ae15a7a616b0bda3150003e7176f`,
-        Accept: "application/vnd.github.golden-comet-preview+json"
-      },
-      body: JSON.stringify({ body: "Test Steph dinosaurtelastata" })
-    });
-    console.log("postComment", response);
-  };
-
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data);
     setIssues(data);
+    console.log(data);
     setAllIssues(data);
   };
 
@@ -78,7 +55,6 @@ function App() {
   };
 
   const findOnPage = term => {
-    // console.log(term);
     if (term === "") {
       setIssues(allIssues);
     } else {
@@ -95,7 +71,6 @@ function App() {
   useEffect(() => {
     getIssues();
     // postComment();
-    getComments();
   }, []);
 
   useEffect(() => {
@@ -129,9 +104,8 @@ function App() {
   return (
     <div className="App">
       <HomePage />
+      <CommentSection />
       {
-        // <MainSideBar />
-        // <CommentSection />
         <ButtonToolbar>
           <Button variant="primary" onClick={() => setModalShow(true)}>
             New Issue
