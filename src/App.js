@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  ButtonToolbar
+} from "react-bootstrap";
+import NewIssueModal from "./components/NewIssueModal";
 import Markdown from "markdown-to-jsx";
-import RepoPage from "./components/RepoPage"; 
+import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
-import HomePage from "./components/HomePage"
+import HomePage from "./components/HomePage";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
-const secretKey = "95ac48be7ce1ae15a7a616b0bda3150003e7176f";
 
 function App() {
   const [allIssues, setAllIssues] = useState([]);
@@ -20,36 +27,39 @@ function App() {
   const [showIssues, setShowIssues] = useState(true);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
-  const [issueName, setIssueName] = useState("react-native-community/react-native-navbar")
+  const [issueName, setIssueName] = useState(
+    "react-native-community/react-native-navbar"
+  );
+  const [modalShow, setModalShow] = React.useState(false);
+
   const getComments = async () => {
     const url =
       "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
   };
 
-  const postComments = async () => {
-    // let data = new URLSearchParams();
+  const postComment = async () => {
     const url =
-      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/2/comments";
+      "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `token c240e4198a36c78f514c344cc5955641d7348b17`
+        Authorization: `token 95ac48be7ce1ae15a7a616b0bda3150003e7176f`,
+        Accept: "application/vnd.github.golden-comet-preview+json"
       },
-      body: { body: "this is a new comment" },
-      json: true
+      body: JSON.stringify({ body: "Test Steph dinosaurtelastata" })
     });
-    console.log(response);
+    console.log("postComment", response);
   };
 
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data)
+    console.log(data);
     setIssues(data);
     setAllIssues(data);
   };
@@ -58,15 +68,14 @@ function App() {
     const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
     const result = await fetch(url);
     const data = await result.json();
-    setTotalSearchResult(Math.round(data.total_count/30));
+    setTotalSearchResult(Math.round(data.total_count / 30));
     setRepo(data.items);
-    setShowIssues(false); 
+    setShowIssues(false);
   };
 
   const handleChange = input => {
     setSearchInput(input);
   };
-
 
   const findOnPage = term => {
     // console.log(term);
@@ -85,7 +94,7 @@ function App() {
 
   useEffect(() => {
     getIssues();
-    postComments();
+    // postComment();
     getComments();
   }, []);
 
@@ -120,8 +129,16 @@ function App() {
   return (
     <div className="App">
       <HomePage />
-      {// <MainSideBar />
-      // <CommentSection /> 
+      {
+        // <MainSideBar />
+        // <CommentSection />
+        <ButtonToolbar>
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            New Issue
+          </Button>
+
+          <NewIssueModal show={modalShow} onHide={() => setModalShow(false)} />
+        </ButtonToolbar>
       }
       <Container>
         <Row>
