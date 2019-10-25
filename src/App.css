@@ -13,6 +13,7 @@
 }
 .card-header {
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 .row {
@@ -35,4 +36,11 @@
     transform: translateX(-100%);
     transition: all 0.3s ease-out;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

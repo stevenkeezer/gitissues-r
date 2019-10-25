@@ -17,7 +17,8 @@
     "react-moment": "^0.9.6",
     "react-scripts": "3.2.0",
     "remove-markdown": "^0.3.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "simple-react-comments": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/icons-fa-solid": "^1.0.5",
+    "@iconify/react": "^1.1.1"
   }
 }
