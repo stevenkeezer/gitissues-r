@@ -21,7 +21,7 @@ function RepoCard(props) {
         <Card.Text>
           <Badge variant="primary">{props.repo.language}</Badge>
           {props.repo.license && <Badge variant="primary">{props.repo.license.name}</Badge>}
-          {"Updated at "}<Moment fromNow>{props.repo.updated_at}</Moment>
+          {"Updated at "}<Moment fromNow ago>{props.repo.updated_at}</Moment>
           {/* <Badge variant={repo.state === "open" ? "primary" : "danger"}>
             {repo.state}
           </Badge> */}
