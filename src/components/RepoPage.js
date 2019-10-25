@@ -1,7 +1,7 @@
 import React from "react";
 import RepoCard from "../components/RepoCard";
 import Pagination from "react-bootstrap/Pagination";
-
+import CreateIssues from "./CreateIssues"
 export default function RepoPage(props) {
 
   const handleOnChange = (page) => {
@@ -41,7 +41,7 @@ export default function RepoPage(props) {
           setShowIssues={props.setShowIssues}
         />
       ))}
-      
+      <CreateIssues />
       <Pagination>
         <Pagination.First onClick={() => handleOnChange(1)} />
         <Pagination.Prev onClick={() => {if(props.currentPage !== 1) handleOnChange(props.currentPage-1)}} />

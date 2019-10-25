@@ -1,9 +1,10 @@
-import React, { useState, Component, useEffect } from "react";
-import { Card } from "react-bootstrap";
+import React, { useState, useEffect, Component } from "react";
+import { Card, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./CommentSection.css";
 
-function CommentsSection() {
+function CommentsSection(props) {
   const getComments = async () => {
     const url =
       "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
@@ -16,13 +17,14 @@ function CommentsSection() {
   useEffect(() => getComments(), []);
 
   const postComment = async comment => {
+    console.log("props.accessToken", props.accessToken)
     const url =
       "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `token 8f603ec455a618b86372f100693cd5f1b5a6a3ab`,
+        Authorization: `token ${props.accessToken}`,
         Accept: "application/vnd.github.golden-comet-preview+json"
       },
       body: JSON.stringify({ body: `${comment}` })
@@ -71,7 +73,8 @@ function CommentsSection() {
       {tasks.map((task, index) => (
         <div className="todo">
           <Card>
-            <Card.Header>{task.user.login}</Card.Header>
+          {// <Card.Header>{task.user.login}</Card.Header>
+          }
             <Card.Body>
               <Card.Title></Card.Title>
               <Card.Text>{task.body}</Card.Text>
@@ -86,3 +89,10 @@ function CommentsSection() {
 }
 
 export default CommentsSection;
+
+// <span
+//   onClick={() => toggleTask(index)}
+//   className={task.isCompleted ? "todo-text todo-completed" : "todo-text"}
+// >
+//   {task.text}
+// </span>;

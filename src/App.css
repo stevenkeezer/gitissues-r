@@ -2,6 +2,10 @@
   display: flex;
   justify-content: center;
 } */
+*{
+  font-family: Montserrat;
+}
+
 
 .sidenav---sidenav---_2tBP {
   position: fixed;
@@ -160,4 +164,30 @@ section{
   color: white;
   border: 1px solid white;
   border-radius: 6px;
+}
+
+.profile-img {
+  width: 50px;
+  border: 2px solid #15275F;
+  border-radius: 45px;
+}
+
+.name-profile {
+  margin-left: 12px;
+  margin-top: 25px;
+}
+
+.header-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.condition-badge {
+  margin-right: 15px;
+  margin-top: 18px;
+}
+
+.second-body-card {
+  display: flex;
+  justify-content: space-between;
 }
