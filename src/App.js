@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
-import RepoPage from "./components/RepoPage";
+import RepoPage from "./components/RepoPage"; 
 import MainSideBar from "./components/MainSideBar";
-import IssuesPage from "./pages/IssuesPage";
+import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
 import "./App.css";
 
@@ -19,7 +19,7 @@ function App() {
   const [showIssues, setShowIssues] = useState(true);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
-
+  const [issueName, setIssueName] = useState("react-native-community/react-native-navbar")
   const getComments = async () => {
     const url =
       "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
@@ -45,25 +45,27 @@ function App() {
   };
 
   const getIssues = async () => {
-    const url = "https://api.github.com/repos/facebook/react/issues";
+    const url = `https://api.github.com/repos/${issueName}/issues`;
     const result = await fetch(url);
     const data = await result.json();
+    console.log(data)
     setIssues(data);
     setAllIssues(data);
-  };
-
-  const handleChange = input => {
-    setSearchInput(input);
   };
 
   const search = async page => {
     const url = `https://api.github.com/search/repositories?q=${searchInput}&page=${page}`;
     const result = await fetch(url);
     const data = await result.json();
-    setTotalSearchResult(data.total_count);
-    setRepo([...data.items]);
-    setShowIssues(false);
+    setTotalSearchResult(Math.round(data.total_count/30));
+    setRepo(data.items);
+    setShowIssues(false); 
   };
+
+  const handleChange = input => {
+    setSearchInput(input);
+  };
+
 
   const findOnPage = term => {
     // console.log(term);
@@ -117,7 +119,7 @@ function App() {
   return (
     <div className="App">
       <MainSideBar />
-      <CommentSection />
+      {// <CommentSection />}
       <Container>
         <Row>
           <div className="inputContainer m-3">
@@ -138,9 +140,12 @@ function App() {
                 <RepoPage
                   search={search}
                   repo={repo}
+                  totalSearchResult={totalSearchResult}
                   setTotalSearchResult={setTotalSearchResult}
                   currentPage={currentPage}
                   setCurrentPage={setCurrentPage}
+                  setIssueName={setIssueName}
+                  setShowIssues={setShowIssues}
                 />
               )}
             </Row>

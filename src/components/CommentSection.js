@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { Card, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ellipsisH from "@iconify/icons-fa-solid/ellipsis-h";
 
 import "./CommentSection.css";
 
