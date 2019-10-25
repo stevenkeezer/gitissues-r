@@ -29,17 +29,15 @@ function App() {
   };
 
   const postComments = async () => {
-    // let data = new URLSearchParams();
     const url =
-      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/2/comments";
+      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/6/comments";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `token c240e4198a36c78f514c344cc5955641d7348b17`
       },
-      body: { body: "this is a new comment" },
-      json: true
+      body: { body: "this is a new comment" }
     });
     console.log(response);
   };
