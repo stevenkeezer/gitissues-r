@@ -1,8 +1,9 @@
 import React from "react";
 import IssueCard from "./IssueCard";
 
-export default function CreateIssues({ issues }) {
-  if(!issues) return "Error while loading API";
+
+export default function IssuesPage({ issues }) {
+  if (!issues) return "Error while loading API";
   return (
     <div>
       {issues.map(issue => (
@@ -10,4 +11,4 @@ export default function CreateIssues({ issues }) {
       ))}
     </div>
   );
-} 
+}

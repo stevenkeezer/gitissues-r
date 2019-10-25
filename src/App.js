@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  ButtonToolbar
+} from "react-bootstrap";
+import NewIssueModal from "./components/NewIssueModal";
 import Markdown from "markdown-to-jsx";
 import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
@@ -10,7 +18,6 @@ import HomePage from "./components/HomePage";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
-const secretKey = "95ac48be7ce1ae15a7a616b0bda3150003e7176f";
 
 function App() {
   const [allIssues, setAllIssues] = useState([]);
@@ -21,9 +28,9 @@ function App() {
   const [showRepo, setShowRepo] = useState(false);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
-  const [issueName, setIssueName] = useState(
-    "react-native-community/react-native-navbar"
-  );
+  const [issueName, setIssueName] = useState("react-native-community/react-native-navbar");
+  const [token, setToken] = useState("");
+
   const getComments = async () => {
     const url =
       "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
@@ -48,12 +55,14 @@ function App() {
     console.log(response);
   };
 
+  const [modalShow, setModalShow] = React.useState(false);
+
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data);
     setIssues(data);
+    console.log(data);
     setAllIssues(data);
   };
 
@@ -64,6 +73,7 @@ function App() {
     setTotalSearchResult(Math.round(data.total_count / 30));
     setRepo(data.items);
     setShowRepo(true);
+    setShowIssues(false);
   };
 
   const handleChange = input => {
@@ -72,7 +82,6 @@ function App() {
   };
 
   const findOnPage = term => {
-    // console.log(term);
     if (term === "") {
       setIssues(allIssues);
     } else {
@@ -88,8 +97,7 @@ function App() {
 
   useEffect(() => {
     getIssues();
-    postComments();
-    getComments();
+    // postComment();
   }, []);
 
   useEffect(() => {
@@ -98,24 +106,26 @@ function App() {
       window.location.search.split("=")[0] === "?access_token"
         ? window.location.search.split("=")[1]
         : null;
-    console.log("accessToken", accessToken.split("&")[0])
-
+    console.log("accessToken",accessToken && accessToken.split("&")[0])
+    console.log("existingToken", )
     if (!accessToken && !existingToken) {
       window.location.replace(
         `https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=${clientId}`
-      );
-    }
-
-    if (accessToken) {
-      // console.log(`New accessToken: ${accessToken}`);
-
-      sessionStorage.setItem("token", accessToken.split("&")[0]);
+        );
+      }
+      
+      if (accessToken) {
+        // console.log(`New accessToken: ${accessToken}`);
+        setToken(accessToken.split("&")[0])
+      }
+        
+      sessionStorage.setItem("token", token);
       // this.state = {
       //   token: accessToken
       // };
-    }
 
     if (existingToken) {
+      setToken(accessToken.split("&")[0])
       // this.state = {
       //   token: existingToken
       // };
@@ -123,12 +133,18 @@ function App() {
   });
   return (
     <div className="App">
+
+      <CommentSection
+        accessToken={token}
+      />
+
       {!showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
       )}
       {
         // <MainSideBar />
         // <CommentSection />
+
       }
       <Container>
         <Row>
