@@ -6,6 +6,7 @@ import RepoPage from "./components/RepoPage";
 import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
+import HomePage from "./components/HomePage"
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
@@ -118,8 +119,10 @@ function App() {
   });
   return (
     <div className="App">
-      <MainSideBar />
-      {// <CommentSection />}
+      <HomePage />
+      {// <MainSideBar />
+      // <CommentSection /> 
+      }
       <Container>
         <Row>
           <div className="inputContainer m-3">
