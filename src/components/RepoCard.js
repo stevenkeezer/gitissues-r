@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function RepoCard(props) {
-  console.log(props.repo);
   return (
     <Card className="mb-2">
-      <Card.Header><a href={props.repo.owner.html_url}>{props.repo.owner.login}</a>/<a href={props.repo.html_url}>{props.repo.name}</a></Card.Header>
+      <Card.Header>
+        <a href={props.repo.owner.html_url}>{props.repo.owner.login}</a>/
+        <a href={props.repo.html_url}>{props.repo.name}</a>
+      </Card.Header>
       <Card.Body>
         <Card.Title>{props.repo.description}</Card.Title>
         <Card.Text>
@@ -29,11 +31,15 @@ function RepoCard(props) {
             {repo.state}
           </Badge> */}
           <br></br>
-          <button onClick={() => {
-            props.setIssueName(props.repo.full_name)
-            props.setShowIssues(true)
-            props.setShowRepo(false)
-            }} >Click me</button>
+          <button
+            onClick={() => {
+              props.setIssueName(props.repo.full_name);
+              props.setShowIssues(true);
+              props.setShowRepo(false);
+            }}
+          >
+            Click me
+          </button>
         </Card.Text>
       </Card.Body>
     </Card>
