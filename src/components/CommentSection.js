@@ -11,13 +11,9 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
-    console.log(data);
   };
 
-  useEffect(() => getComments(), []);
-
   const postComment = async comment => {
-    console.log("props.accessToken", props.accessToken)
     const url =
       "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
     const response = await fetch(url, {
@@ -29,6 +25,7 @@ function CommentsSection(props) {
       },
       body: JSON.stringify({ body: `${comment}` })
     });
+    getComments();
   };
 
   const AddTaskForm = ({ addTask }) => {
@@ -55,32 +52,37 @@ function CommentsSection(props) {
 
   const [tasks, setTasks] = useState([]);
 
-  const addTask = text => setTasks([...tasks, { text }], postComment(text));
-
-  const toggleTask = index => {
-    const newTasks = [...tasks];
-    newTasks[index].isCompleted = !newTasks[index].isCompleted;
-    setTasks(newTasks);
+  const addTask = text => {
+    postComment(text);
   };
 
-  const removeTask = index => {
-    const newTasks = [...tasks];
-    newTasks.splice(index, 1);
-    setTasks(newTasks);
+  const removeComment = async id => {
+    const url = `https://api.github.com/repos/stevenkeezer/gitissues-r/issues/comments/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${props.accessToken}`,
+        Accept: "application/vnd.github.golden-comet-preview+json"
+      }
+    });
+    getComments();
   };
+
   return (
     <div className="todo-list mx-auto">
       {tasks.map((task, index) => (
         <div className="todo">
           <Card>
-          {// <Card.Header>{task.user.login}</Card.Header>
-          }
+            <Card.Header>
+              <img alt="blah" width="50px" src={task.user.avatar_url}></img>{" "}
+              {task.user.login}
+            </Card.Header>
             <Card.Body>
-              <Card.Title></Card.Title>
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
           </Card>
-          <button onClick={() => removeTask(index)}>Remove</button>
+          <button onClick={() => removeComment(task.id)}>Remove</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />

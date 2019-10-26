@@ -7,7 +7,7 @@ export default function HomePage(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">   
+        <a className="navbar-brand" href="#">
           {" "}
           <img className="logo" src={logo} />
         </a>
@@ -56,7 +56,6 @@ export default function HomePage(props) {
             <Button
               className="btn btn-outline-success my-2 my-sm-0 btn-search"
               onClick={() => props.search()}
-              
             >
               Search
             </Button>
@@ -97,7 +96,7 @@ export default function HomePage(props) {
           © 2019 Copyright:
           <a href="https://mdbootstrap.com/education/bootstrap/">
             {" "}
-           alienhub.com
+            alienhub.com
           </a>
         </div>
       </footer>

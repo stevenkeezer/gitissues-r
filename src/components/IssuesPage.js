@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import IssueCard from "./IssueCard";
-import { useField, splitFormProps } from "react-form";
 
 export default function IssuesPage({ issues }) {
   const [searchName, setSearchName] = useState("");
