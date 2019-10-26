@@ -1,61 +1,41 @@
-import React, { Component } from "react";
-import {
-  Badge,
-  Form,
-  Card,
-  Button,
-  Container,
-  Row,
-  Col
-} from "react-bootstrap";
+import React, { useState, Component } from "react";
+import { Badge, Card, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
 
-function IssueCard({ issue }) {
+function IssueCard(props) {
+  const handleClick = () => {
+    props.setShowIssues(false);
+    props.setShowComments(true);
+    props.setCommentId(props.issue.number);
+    props.setPropsRepoUrl(props.issue.repository_url);
+  };
 
   return (
     <Card className="mb-2">
-      <Card.Header className="header-card">
-        #{issue.number} {issue.title}
+      <Card.Header onClick={handleClick} className="header-card">
+        <Col>
+          #{props.issue.number} {props.issue.title}
+          <br></br>
+          <a className="name-profile" href={props.issue.user.html_url}>
+            Opened by {props.issue.user.login}
+          </a>
+        </Col>
+
         <Badge
           className="status-badge"
-          variant={issue.state === "open" ? "primary" : "danger"}
+          variant={props.issue.state === "open" ? "primary" : "danger"}
         >
-          {issue.state}
+          {props.issue.state}
         </Badge>
       </Card.Header>
-      <Card.Body>
+      <Card.Body id="issueCardBody">
         <Card.Title></Card.Title>
         <Card.Text>
-          <Markdown>{issue.body.slice(250, 350)}</Markdown>
           <br></br>
           <hr></hr>
           <div class="second-body-card">
-            <div>
-              <img
-                className="profile-img"
-                alt="loser"
-                src={issue.user.avatar_url}
-              ></img>
-              <a className="name-profile" href={issue.user.html_url}>
-                {issue.user.login}
-              </a>
-            </div>
-            <div>
-              <p>
-                {issue.labels[0]
-                  ? issue.labels.map(label => {
-                      return (
-                        <Badge
-                          className="condition-badge"
-                          style={{ backgroundColor: `#${label.color}` }}
-                        >
-                          {label.name}
-                        </Badge>
-                      );
-                    })
-                  : ""}
-              </p>
-            </div>
+            <div></div>
+            <div></div>
           </div>
         </Card.Text>
       </Card.Body>

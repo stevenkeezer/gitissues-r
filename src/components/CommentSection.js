@@ -1,13 +1,12 @@
 import React, { useState, useEffect, Component } from "react";
-import { Card, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Card } from "react-bootstrap";
 
 import "./CommentSection.css";
 
 function CommentsSection(props) {
+  // console.log(props);
   const getComments = async () => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
+    const url = `${props.propsRepoUrl}/issues/${props.commentId}/comments`;
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
@@ -69,8 +68,14 @@ function CommentsSection(props) {
     getComments();
   };
 
+  useEffect(() => {
+    getComments();
+  }, []);
+
   return (
     <div className="todo-list mx-auto">
+      Comments
+      {tasks.length < 1 && <div>Be the first one to add a comment</div>}
       {tasks.map((task, index) => (
         <div className="todo">
           <Card>

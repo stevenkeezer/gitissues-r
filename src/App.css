@@ -2,10 +2,9 @@
   display: flex;
   justify-content: center;
 } */
-*{
+* {
   font-family: Montserrat;
 }
-
 
 .sidenav---sidenav---_2tBP {
   position: fixed;
@@ -53,10 +52,9 @@
   display: flex;
   justify-content: center;
 } */
-*{
+* {
   font-family: Montserrat;
 }
-
 
 .sidenav---sidenav---_2tBP {
   position: fixed;
@@ -92,7 +90,6 @@
   }
 }
 
-
 .issue-card {
   margin-top: 50px;
 }
@@ -109,26 +106,25 @@
   height: 551px;
   width: 667px;
   margin-top: 30px;
-
 }
-section{
-  background-color: #15275F;
+section {
+  background-color: #15275f;
   height: 700px;
   padding-top: 30px;
 }
 
 .btn-search {
-  color: #15275F;
-  border: 1px solid #15275F;
+  color: #15275f;
+  border: 1px solid #15275f;
 }
 
 .btn-search:hover {
-  background-color: #15275F;
-  border: 1px solid #15275F;
+  background-color: #15275f;
+  border: 1px solid #15275f;
 }
 
 .title-homepage {
-  color: #15275F;
+  color: #15275f;
   font-weight: 600;
   margin: 30px;
   line-height: 1.7;
@@ -150,7 +146,7 @@ section{
 }
 
 .content-homepage {
-  color: #15275F;
+  color: #15275f;
   margin: 30px;
   line-height: 1.8;
 }
@@ -168,7 +164,7 @@ section{
 
 .profile-img {
   width: 50px;
-  border: 2px solid #15275F;
+  border: 2px solid #15275f;
   border-radius: 45px;
 }
 
@@ -177,7 +173,7 @@ section{
   margin-top: 25px;
 }
 
-.header-card{
+.header-card {
   display: flex;
   justify-content: space-between;
 }
@@ -190,4 +186,8 @@ section{
 .second-body-card {
   display: flex;
   justify-content: space-between;
+}
+#issueCardBody {
+  padding: 0 !important;
+  max-height: 0px !important;
 }

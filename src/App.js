@@ -26,6 +26,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showIssues, setShowIssues] = useState(false);
   const [showRepo, setShowRepo] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [commentId, setCommentId] = useState(null);
+  const [propRepoUrl, setPropsRepoUrl] = useState(null);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [issueName, setIssueName] = useState(
@@ -75,7 +78,6 @@ function App() {
 
   useEffect(() => {
     getIssues();
-    // postComment();
   }, []);
 
   useEffect(() => {
@@ -111,30 +113,30 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <CommentSection accessToken={token} />
-
-      {!showIssues && !showRepo && (
+      {!showComments && !showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
       )}
-      {
-        // <MainSideBar />
-        // <CommentSection />
-      }
       <Container>
         <Row>
-          {/* <div className="inputContainer m-3">
-            <input
-              name="search"
-              type="text"
-              onChange={event => handleChange(event.target.value)}
-              className="form-control input-lg"
-              placeholder="Search Issue..."
-            />
-            <Button onClick={() => search()}>Search</Button>
-          </div> */}
           <Col>
             <Row>
-              {showIssues && <IssuesPage issues={issues} />}
+              {showComments && (
+                <CommentSection
+                  issues={issues}
+                  commentId={commentId}
+                  accessToken={token}
+                  propsRepoUrl={propRepoUrl}
+                />
+              )}
+              {showIssues && (
+                <IssuesPage
+                  setShowIssues={setShowIssues}
+                  setShowComments={setShowComments}
+                  issues={issues}
+                  setCommentId={setCommentId}
+                  setPropsRepoUrl={setPropsRepoUrl}
+                />
+              )}
               {showRepo && (
                 <RepoPage
                   search={search}
