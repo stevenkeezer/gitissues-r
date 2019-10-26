@@ -28,32 +28,10 @@ function App() {
   const [showRepo, setShowRepo] = useState(false);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
-  const [issueName, setIssueName] = useState("react-native-community/react-native-navbar");
+  const [issueName, setIssueName] = useState(
+    "react-native-community/react-native-navbar"
+  );
   const [token, setToken] = useState("");
-
-  const getComments = async () => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/comments";
-    const result = await fetch(url);
-    const data = await result.json();
-    console.log(data);
-  };
-
-  const postComments = async () => {
-    // let data = new URLSearchParams();
-    const url =
-      "https://api.github.com/repos/stevenkeezer/weatherAppReact/issues/2/comments";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token c240e4198a36c78f514c344cc5955641d7348b17`
-      },
-      body: { body: "this is a new comment" },
-      json: true
-    });
-    console.log(response);
-  };
 
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -62,7 +40,7 @@ function App() {
     const result = await fetch(url);
     const data = await result.json();
     setIssues(data);
-    console.log(data);
+    // console.log(data);
     setAllIssues(data);
   };
 
@@ -77,7 +55,7 @@ function App() {
   };
 
   const handleChange = input => {
-    console.log("User Searching", input);
+    // console.log("User Searching", input);
     setSearchInput(input);
   };
 
@@ -106,37 +84,34 @@ function App() {
       window.location.search.split("=")[0] === "?access_token"
         ? window.location.search.split("=")[1]
         : null;
-    console.log("accessToken",accessToken && accessToken.split("&")[0])
-    console.log("existingToken", )
+    // console.log("accessToken", accessToken && accessToken.split("&")[0]);
+    // console.log("existingToken");
     if (!accessToken && !existingToken) {
       window.location.replace(
         `https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=${clientId}`
-        );
-      }
+      );
+    }
 
-      if (accessToken) {
-        // console.log(`New accessToken: ${accessToken}`);
-        setToken(accessToken.split("&")[0])
-      }
+    if (accessToken) {
+      // console.log(`New accessToken: ${accessToken}`);
+      setToken(accessToken.split("&")[0]);
+    }
 
-      sessionStorage.setItem("token", token);
-      // this.state = {
-      //   token: accessToken
-      // };
+    sessionStorage.setItem("token", token);
+    // this.state = {
+    //   token: accessToken
+    // };
 
     if (existingToken) {
-      setToken(accessToken.split("&")[0])
+      setToken(accessToken.split("&")[0]);
       // this.state = {
       //   token: existingToken
       // };
     }
-  });
+  }, []);
   return (
     <div className="App">
-
-      {/* <CommentSection
-        accessToken={token}
-      />*/}
+      <CommentSection accessToken={token} />
 
       {!showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
@@ -144,10 +119,19 @@ function App() {
       {
         // <MainSideBar />
         // <CommentSection />
-
       }
       <Container>
         <Row>
+          {/* <div className="inputContainer m-3">
+            <input
+              name="search"
+              type="text"
+              onChange={event => handleChange(event.target.value)}
+              className="form-control input-lg"
+              placeholder="Search Issue..."
+            />
+            <Button onClick={() => search()}>Search</Button>
+          </div> */}
           <Col>
             <Row>
               {showIssues && <IssuesPage issues={issues} />}
