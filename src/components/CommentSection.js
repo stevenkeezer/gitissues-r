@@ -96,9 +96,7 @@ function CommentsSection(props) {
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
           </Card>
-          <button onClick={() => removeComment(task.id, task.user.login)}>
-            🗑️ Remove
-          </button>
+          <button onClick={() => removeComment(task.id)}>🗑️ Remove</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />
