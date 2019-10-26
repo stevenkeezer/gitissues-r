@@ -13,8 +13,7 @@ function CommentsSection(props) {
   };
 
   const postComment = async comment => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
+    const url = `${props.propsRepoUrl}/issues/${props.commentId}/comments`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -56,7 +55,7 @@ function CommentsSection(props) {
   };
 
   const removeComment = async id => {
-    const url = `https://api.github.com/repos/stevenkeezer/gitissues-r/issues/comments/${id}`;
+    const url = `${props.propsRepoUrl}/issues/comments/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
