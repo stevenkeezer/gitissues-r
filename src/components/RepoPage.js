@@ -39,6 +39,7 @@ export default function RepoPage(props) {
           idx={idx}
           setIssueName={props.setIssueName}
           setShowIssues={props.setShowIssues}
+          setShowRepo={props.setShowRepo}
         />
       ))}
       <CreateIssues />

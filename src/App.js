@@ -113,12 +113,12 @@ function App() {
         `https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=${clientId}`
         );
       }
-      
+
       if (accessToken) {
         // console.log(`New accessToken: ${accessToken}`);
         setToken(accessToken.split("&")[0])
       }
-        
+
       sessionStorage.setItem("token", token);
       // this.state = {
       //   token: accessToken
@@ -134,9 +134,9 @@ function App() {
   return (
     <div className="App">
 
-      <CommentSection
+      {/* <CommentSection
         accessToken={token}
-      />
+      />*/}
 
       {!showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
@@ -148,16 +148,6 @@ function App() {
       }
       <Container>
         <Row>
-          <div className="inputContainer m-3">
-            <input
-              name="search"
-              type="text"
-              onChange={event => handleChange(event.target.value)}
-              className="form-control input-lg"
-              placeholder="Search Issue..."
-            />
-            <Button onClick={() => search()}>Search</Button>
-          </div>
           <Col>
             <Row>
               {showIssues && <IssuesPage issues={issues} />}
@@ -171,6 +161,7 @@ function App() {
                   setCurrentPage={setCurrentPage}
                   setIssueName={setIssueName}
                   setShowIssues={setShowIssues}
+                  setShowRepo={setShowRepo}
                 />
               )}
             </Row>
