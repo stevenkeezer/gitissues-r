@@ -32,6 +32,7 @@ function RepoCard(props) {
           <br></br>
           <button className="click-me" onClick={() => {
             props.setIssueName(props.repo.full_name)
+            // console.log('full_name issue',props.repo.full_name)
             props.setShowIssues(true)
             props.setShowRepo(false)
             }} >Click me</button>

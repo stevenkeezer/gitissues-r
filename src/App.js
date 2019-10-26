@@ -43,7 +43,7 @@ function App() {
     const result = await fetch(url);
     const data = await result.json();
     setIssues(data);
-    // console.log(data);
+    // console.log('data',data);
     setAllIssues(data);
   };
 
@@ -78,7 +78,7 @@ function App() {
 
   useEffect(() => {
     getIssues();
-  }, []);
+  }, [issueName]);
 
   useEffect(() => {
     const existingToken = sessionStorage.getItem("token");

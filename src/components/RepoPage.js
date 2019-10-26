@@ -34,15 +34,16 @@ export default function RepoPage(props) {
         <Pagination.Last onClick={() => handleOnChange(props.totalSearchResult-1)} />
       </Pagination>
 
-      {props.repo.map((repo,idx) => (
-        <RepoCard 
+      {props.repo.map((repo,idx) => {
+        // console.log('repo',repo);
+        return <RepoCard 
           repo={repo}
           idx={idx}
           setIssueName={props.setIssueName}
           setShowIssues={props.setShowIssues}
           setShowRepo={props.setShowRepo}
         />
-      ))}
+      })}
       <Pagination>
         <Pagination.First onClick={() => handleOnChange(1)} />
         <Pagination.Prev onClick={() => {if(props.currentPage !== 1) handleOnChange(props.currentPage-1)}} />

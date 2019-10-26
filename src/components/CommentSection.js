@@ -10,6 +10,7 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
+    console.log(url,"url",data,"data")
   };
 
   const postComment = async comment => {
@@ -24,6 +25,7 @@ function CommentsSection(props) {
       },
       body: JSON.stringify({ body: `${comment}` })
     });
+    console.log(response);
     getComments();
   };
 
@@ -65,6 +67,7 @@ function CommentsSection(props) {
         Accept: "application/vnd.github.golden-comet-preview+json"
       }
     });
+    console.log(response);
     getComments();
   };
 
