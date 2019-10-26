@@ -24,12 +24,15 @@ function App() {
   const [issues, setIssues] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [showIssues, setShowIssues] = useState(true);
+  const [showIssues, setShowIssues] = useState(false);
+  const [showRepo, setShowRepo] = useState(false);
   const [repo, setRepo] = useState([]);
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [issueName, setIssueName] = useState(
     "react-native-community/react-native-navbar"
   );
+  const [token, setToken] = useState("");
+
   const [modalShow, setModalShow] = React.useState(false);
 
   const getIssues = async () => {
@@ -37,7 +40,7 @@ function App() {
     const result = await fetch(url);
     const data = await result.json();
     setIssues(data);
-    console.log(data);
+    // console.log(data);
     setAllIssues(data);
   };
 
@@ -47,10 +50,12 @@ function App() {
     const data = await result.json();
     setTotalSearchResult(Math.round(data.total_count / 30));
     setRepo(data.items);
+    setShowRepo(true);
     setShowIssues(false);
   };
 
   const handleChange = input => {
+    // console.log("User Searching", input);
     setSearchInput(input);
   };
 
@@ -79,7 +84,8 @@ function App() {
       window.location.search.split("=")[0] === "?access_token"
         ? window.location.search.split("=")[1]
         : null;
-
+    // console.log("accessToken", accessToken && accessToken.split("&")[0]);
+    // console.log("existingToken");
     if (!accessToken && !existingToken) {
       window.location.replace(
         `https://github.com/login/oauth/authorize?scope=user:email,repo&client_id=${clientId}`
@@ -88,35 +94,35 @@ function App() {
 
     if (accessToken) {
       // console.log(`New accessToken: ${accessToken}`);
-
-      sessionStorage.setItem("token", accessToken);
-      // this.state = {
-      //   token: accessToken
-      // };
+      setToken(accessToken.split("&")[0]);
     }
 
+    sessionStorage.setItem("token", token);
+    // this.state = {
+    //   token: accessToken
+    // };
+
     if (existingToken) {
+      setToken(accessToken.split("&")[0]);
       // this.state = {
       //   token: existingToken
       // };
     }
-  });
+  }, []);
   return (
     <div className="App">
-      <HomePage />
-      <CommentSection />
-      {
-        <ButtonToolbar>
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            New Issue
-          </Button>
+      <CommentSection accessToken={token} />
 
-          <NewIssueModal show={modalShow} onHide={() => setModalShow(false)} />
-        </ButtonToolbar>
+      {!showIssues && !showRepo && (
+        <HomePage search={search} handleChange={handleChange} />
+      )}
+      {
+        // <MainSideBar />
+        // <CommentSection />
       }
       <Container>
         <Row>
-          <div className="inputContainer m-3">
+          {/* <div className="inputContainer m-3">
             <input
               name="search"
               type="text"
@@ -125,12 +131,11 @@ function App() {
               placeholder="Search Issue..."
             />
             <Button onClick={() => search()}>Search</Button>
-          </div>
+          </div> */}
           <Col>
             <Row>
-              {showIssues ? (
-                <IssuesPage issues={issues} />
-              ) : (
+              {showIssues && <IssuesPage issues={issues} />}
+              {showRepo && (
                 <RepoPage
                   search={search}
                   repo={repo}
