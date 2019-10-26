@@ -39,13 +39,16 @@ function CommentsSection(props) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <input className="input-comment-content"
+        <input
+          className="input-comment-content"
           type="text"
           value={value}
           placeholder="Enter a comment…"
           onChange={e => setValue(e.target.value)}
         />
-        <button className="btn-enter-comment"type="submit">Enter</button>
+        <button className="btn-enter-comment" type="submit">
+          Enter
+        </button>
       </form>
     );
   };
@@ -57,6 +60,7 @@ function CommentsSection(props) {
   };
 
   const removeComment = async (id, login) => {
+    console.log(props.propsRepoUrl, login);
     if (props.propsRepoUrl.includes(login)) {
       const url = `${props.propsRepoUrl}/issues/comments/${id}`;
       const response = await fetch(url, {
@@ -91,8 +95,10 @@ function CommentsSection(props) {
             <Card.Body>
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
-          </Card> 
-          <button onClick={() => removeComment(task.id)}>🗑️ Remove</button>
+          </Card>
+          <button onClick={() => removeComment(task.id, task.user.login)}>
+            🗑️ Remove
+          </button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />
