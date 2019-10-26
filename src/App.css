@@ -45,7 +45,7 @@
   display: flex;
   justify-content: center;
   padding-top: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 /* .App {
@@ -91,7 +91,8 @@
 }
 
 .issue-card {
-  margin-top: 50px;
+  margin-top: 30px;
+  width: 870px;
 }
 
 .logo {
@@ -193,6 +194,7 @@ section {
 
 .total-results-text {
   margin-top: 30px;
+  margin-bottom: 30px;
   color: #051139;
   text-shadow: none;
 }
@@ -283,4 +285,70 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.modal-input-title {
+  height: 40px;
+  width: 466px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-top: 10px;
+  margin-bottom: -10px;
+  text-align: left;
+}
+
+.modal-input-content {
+  height: 40px;
+  width: 466px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-top: 30px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  height: 80px;
+}
+.btn-submit-new-issue {
+  background-color: #007bff;
+  border: 2px solid #15275f;
+  border-radius: 5px;
+}
+
+.btn-submit-new-issue:hover {
+  background-color: #15275f;
+  border: 2px solid #15275f;
+  border-radius: 5px;
+  color: white;
+}
+
+.btn-enter-comment {
+  height: 40px;
+  background-color: #007bff;
+  border: 2px solid #15275f;
+  border-radius: 5px;
+  color: #15275f;
+}
+.btn-enter-comment:hover {
+  height: 40px;
+  background-color: #15275f;
+  border: 2px solid #15275f;
+  border-radius: 5px;
+  color: white;
+}
+
+.input-comment-content {
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  text-align: left;
+}
+
+.btn-remove {
+  margin-top: 20px;
+  margin-top: 30px;
 }

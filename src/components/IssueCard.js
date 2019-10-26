@@ -12,8 +12,8 @@ function IssueCard(props) {
   };
 
   return (
-    <Card className="mb-2">
-      <Card.Header onClick={handleClick} className="header-card">
+    <Card className="mb-2 issue-card">
+      <Card.Header className="header-card">
         <Col>
           #{props.issue.number} {props.issue.title}
           <br></br>
@@ -21,7 +21,12 @@ function IssueCard(props) {
             Opened by {props.issue.user.login}
           </a>
         </Col>
-
+        <div
+          style={{ marginRight: "50px", marginTop: "2px", cursor: "pointer" }}
+          onClick={handleClick}
+        >
+          💬
+        </div>
         <Badge
           className="status-badge"
           variant={props.issue.state === "open" ? "primary" : "danger"}

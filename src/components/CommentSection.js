@@ -39,13 +39,13 @@ function CommentsSection(props) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <input
+        <input className="input-comment-content"
           type="text"
           value={value}
           placeholder="Enter a comment…"
           onChange={e => setValue(e.target.value)}
         />
-        <button type="submit">Enter</button>
+        <button className="btn-enter-comment"type="submit">Enter</button>
       </form>
     );
   };
@@ -78,28 +78,24 @@ function CommentsSection(props) {
   }, []);
 
   return (
-    <div>
-      <div className="todo-list mx-auto">
-        Comments
-        {tasks.length < 1 && <div>Be the first one to add a comment</div>}
-        {tasks.map((task, index) => (
-          <div className="todo">
-            <Card>
-              <Card.Header>
-                <img alt="blah" width="50px" src={task.user.avatar_url}></img>{" "}
-                {task.user.login}
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>{task.body}</Card.Text>
-              </Card.Body>
-            </Card>
-            <button onClick={() => removeComment(task.id, task.user.login)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <AddTaskForm addTask={addTask} />
-      </div>
+    <div className="todo-list mx-auto">
+      <h2>Comments</h2>
+      {tasks.length < 1 && <div>Be the first one to add a comment</div>}
+      {tasks.map((task, index) => (
+        <div className="todo">
+          <Card>
+            <Card.Header>
+              <img alt="blah" width="50px" src={task.user.avatar_url}></img>{" "}
+              {task.user.login}
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>{task.body}</Card.Text>
+            </Card.Body>
+          </Card> 
+          <button onClick={() => removeComment(task.id)}>🗑️ Remove</button>
+        </div>
+      ))}
+      <AddTaskForm addTask={addTask} />
     </div>
   );
 }

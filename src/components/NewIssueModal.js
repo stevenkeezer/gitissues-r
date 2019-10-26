@@ -48,12 +48,12 @@ function NewIssueModal(props) {
           <Modal.Title>Create a new Issue</Modal.Title>
         </Modal.Header>
         <Modal.Body className="createIssueModal">
-          <input placeholder="Title" onChange={event => handleTitle(event)}></input>
-          <label>Write</label>
-          <input placeholder="Write down your issues" onChange={event => handleContent(event)}></input>
+          <input className="modal-input-title"placeholder="Title" onChange={event => handleTitle(event)}></input>
+          {/* <label>Write</label> */}
+          <input className="modal-input-content" placeholder="Write down your issues" onChange={event => handleContent(event)}></input>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handlePosting}>
+          <Button className="btn-submit-new-issue"variant="primary" onClick={handlePosting}>
             Summit new Issue
           </Button>
         </Modal.Footer>
