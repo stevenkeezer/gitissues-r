@@ -10,7 +10,7 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
-    console.log(url,"url",data,"data")
+    // console.log(url, "url", data, "data");
   };
 
   const postComment = async comment => {
@@ -24,7 +24,7 @@ function CommentsSection(props) {
       },
       body: JSON.stringify({ body: `${comment}` })
     });
-    console.log(response);
+    // console.log(response);
     getComments();
   };
 
@@ -56,18 +56,21 @@ function CommentsSection(props) {
     postComment(text);
   };
 
-  const removeComment = async id => {
-    const url = `${props.propsRepoUrl}/issues/comments/${id}`;
-    const response = await fetch(url, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${props.accessToken}`,
-        Accept: "application/vnd.github.golden-comet-preview+json"
-      }
-    });
-    console.log(response);
-    getComments();
+  const removeComment = async (id, login) => {
+    if (props.propsRepoUrl.includes(login)) {
+      const url = `${props.propsRepoUrl}/issues/comments/${id}`;
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${props.accessToken}`,
+          Accept: "application/vnd.github.golden-comet-preview+json"
+        }
+      });
+      getComments();
+    } else {
+      alert("You cant modify that comment");
+    }
   };
 
   useEffect(() => {
@@ -75,24 +78,28 @@ function CommentsSection(props) {
   }, []);
 
   return (
-    <div className="todo-list mx-auto">
-      Comments
-      {tasks.length < 1 && <div>Be the first one to add a comment</div>}
-      {tasks.map((task, index) => (
-        <div className="todo">
-          <Card>
-            <Card.Header>
-              <img alt="blah" width="50px" src={task.user.avatar_url}></img>{" "}
-              {task.user.login}
-            </Card.Header>
-            <Card.Body>
-              <Card.Text>{task.body}</Card.Text>
-            </Card.Body>
-          </Card>
-          <button onClick={() => removeComment(task.id)}>Remove</button>
-        </div>
-      ))}
-      <AddTaskForm addTask={addTask} />
+    <div>
+      <div className="todo-list mx-auto">
+        Comments
+        {tasks.length < 1 && <div>Be the first one to add a comment</div>}
+        {tasks.map((task, index) => (
+          <div className="todo">
+            <Card>
+              <Card.Header>
+                <img alt="blah" width="50px" src={task.user.avatar_url}></img>{" "}
+                {task.user.login}
+              </Card.Header>
+              <Card.Body>
+                <Card.Text>{task.body}</Card.Text>
+              </Card.Body>
+            </Card>
+            <button onClick={() => removeComment(task.id, task.user.login)}>
+              Remove
+            </button>
+          </div>
+        ))}
+        <AddTaskForm addTask={addTask} />
+      </div>
     </div>
   );
 }
