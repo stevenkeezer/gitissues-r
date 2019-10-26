@@ -8838,6 +8838,11 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
+react-form@^4.0.0-alpha.14:
+  version "4.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/react-form/-/react-form-4.0.0-alpha.14.tgz#f11f9d963dc756ff9021eda2417b669e06b8e2f5"
+  integrity sha512-UdMYU8Mpbk94epUPq2J4RFKuYipcaaXm1wpTlrUGm0n98h4IdRvGJdrJ0EZpD4tKbZERBjX7c9zZFR9ObAAFng==
+
 react-is@^16.3.2:
   version "16.11.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"

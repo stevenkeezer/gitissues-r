@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import IssueCard from "./IssueCard";
+import Button from "react-bootstrap/Button";
 
 export default function IssuesPage(props) {
   const [searchName, setSearchName] = useState("");
@@ -32,6 +33,9 @@ export default function IssuesPage(props) {
             issue={issue}
           />
         ))}
+      </div>
+      <div className="issues-form">
+          <Button onClick={() => props.setShowCreateIssues(true)}>Click me to create issue</Button>
       </div>
     </div>
   );
