@@ -8,10 +8,12 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 function RepoCard(props) {
   return (
     <Card className="mb-2 repo-card">
-      <Card.Header>👽 <a href={props.repo.owner.html_url}>{props.repo.owner.login}</a> / <a href={props.repo.html_url}>{props.repo.name}</a>
-      {props.repo.license && (
-            <Badge variant="primary">{props.repo.license.name}</Badge>
-          )}
+      <Card.Header>
+        👽 <a href={props.repo.owner.html_url}>{props.repo.owner.login}</a> /{" "}
+        <a href={props.repo.html_url}>{props.repo.name}</a>
+        {props.repo.license && (
+          <Badge variant="primary">{props.repo.license.name}</Badge>
+        )}
       </Card.Header>
       <Card.Body>
         <Card.Title>📃 {props.repo.description}</Card.Title>
@@ -30,12 +32,17 @@ function RepoCard(props) {
             {repo.state}
           </Badge> */}
           <br></br>
-          <button className="click-me" onClick={() => {
-            props.setIssueName(props.repo.full_name)
-            // console.log('full_name issue',props.repo.full_name)
-            props.setShowIssues(true)
-            props.setShowRepo(false)
-            }} >Click me</button>
+          <button
+            className="click-me"
+            onClick={() => {
+              props.setIssueName(props.repo.full_name);
+              // console.log('full_name issue',props.repo.full_name)
+              props.setShowIssues(true);
+              props.setShowRepo(false);
+            }}
+          >
+            Click me
+          </button>
         </Card.Text>
       </Card.Body>
     </Card>

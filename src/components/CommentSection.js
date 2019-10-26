@@ -10,12 +10,12 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
-    // console.log(url,"url",data,"data")
+
+    // console.log(url, "url", data, "data");
   };
 
   const postComment = async comment => {
-    const url =
-      "https://api.github.com/repos/stevenkeezer/gitissues-r/issues/6/comments";
+    const url = `${props.propsRepoUrl}/issues/${props.commentId}/comments`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -25,7 +25,7 @@ function CommentsSection(props) {
       },
       body: JSON.stringify({ body: `${comment}` })
     });
-    console.log(response);
+    // console.log(response);
     getComments();
   };
 
@@ -40,13 +40,13 @@ function CommentsSection(props) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <input
+        <input className="input-comment-content"
           type="text"
           value={value}
           placeholder="Enter a comment…"
           onChange={e => setValue(e.target.value)}
         />
-        <button type="submit">Enter</button>
+        <button className="btn-enter-comment"type="submit">Enter</button>
       </form>
     );
   };
@@ -81,7 +81,7 @@ function CommentsSection(props) {
 
   return (
     <div className="todo-list mx-auto">
-      Comments
+      <h2>Comments</h2>
       {tasks.length < 1 && <div>Be the first one to add a comment</div>}
       {tasks.map((task, index) => (
         <div className="todo">
