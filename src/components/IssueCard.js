@@ -3,6 +3,7 @@ import { Badge, Card, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
 
 function IssueCard(props) {
+  console.log(props.issue && props.issue);
   const handleClick = () => {
     props.setShowIssues(false);
     props.setShowComments(true);
@@ -12,7 +13,7 @@ function IssueCard(props) {
 
   return (
     <Card className="mb-2 issue-card">
-      <Card.Header onClick={handleClick} className="header-card">
+      <Card.Header className="header-card">
         <Col>
           #{props.issue.number} {props.issue.title}
           <br></br>
@@ -20,7 +21,12 @@ function IssueCard(props) {
             Opened by {props.issue.user.login}
           </a>
         </Col>
-
+        <div
+          style={{ marginRight: "50px", marginTop: "2px", cursor: "pointer" }}
+          onClick={handleClick}
+        >
+          💬
+        </div>
         <Badge
           className="status-badge"
           variant={props.issue.state === "open" ? "primary" : "danger"}
