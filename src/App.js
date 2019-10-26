@@ -145,6 +145,7 @@ function App() {
                   setCurrentPage={setCurrentPage}
                   setIssueName={setIssueName}
                   setShowIssues={setShowIssues}
+                  setShowRepo={setShowRepo}
                 />
               )}
             </Row>
