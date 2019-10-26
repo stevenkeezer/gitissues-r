@@ -2,7 +2,6 @@ import React from "react";
 import RepoCard from "../components/RepoCard";
 import Pagination from "react-bootstrap/Pagination";
 
-import CreateIssues from "./CreateIssues"
 export default function RepoPage(props) {
 
   const handleOnChange = (page) => {

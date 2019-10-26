@@ -36,6 +36,7 @@ function NewIssueModal(props) {
 
   const handlePosting = () => {
     postIssue()
+    props.getIssues()
     props.setShowCreateIssues(false)
   }
 

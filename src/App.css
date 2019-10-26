@@ -10,7 +10,7 @@
   position: fixed;
   background-color: #24292e;
 }
- 
+
 .card-text {
   word-wrap: break-word;
 }
@@ -18,36 +18,36 @@
   font-weight: bold;
   word-wrap: break-word;
 }
- 
+
 .row {
   display: inline-block;
 }
- 
+
 .container {
   display: flex;
   justify-content: center;
 }
- 
+
 .inputContainer {
   display: flex;
   padding-left: 20%;
   padding-right: 20%;
 }
- 
+
 @media (max-width: 759px) {
   .sidenav---sidenav---_2tBP {
     transform: translateX(-100%);
     transition: all 0.3s ease-out;
   }
 }
- 
+
 .pagination {
   display: flex;
   justify-content: center;
   padding-top: 10px;
   padding-bottom: 10px;
 }
- 
+
 /* .App {
   display: flex;
   justify-content: center;
@@ -60,29 +60,29 @@
   position: fixed;
   background-color: #24292e;
 }
- 
+
 .card-text {
   word-wrap: break-word;
 }
 .card-header {
   font-weight: bold;
 }
- 
+
 .row {
   display: inline-block;
 }
- 
+
 .container {
   display: flex;
   justify-content: center;
 }
- 
+
 .inputContainer {
   display: flex;
   padding-left: 20%;
   padding-right: 20%;
 }
- 
+
 @media (max-width: 759px) {
   .sidenav---sidenav---_2tBP {
     transform: translateX(-100%);
@@ -93,12 +93,12 @@
 .issue-card {
   margin-top: 50px;
 }
- 
+
 .logo {
   height: 43px;
   width: 171px;
 }
- 
+
 .background-home-img {
   display: flex;
   align-items: center;
@@ -112,31 +112,30 @@ section {
   height: 700px;
   padding-top: 30px;
 }
- 
+
 .btn-search {
   color: #15275f;
   border: 2px solid #15275f;
 }
- 
+
 .btn-search:hover {
   background-color: #15275f;
   border: 2px solid #15275f;
-  border: 1px solid #15275f;
 }
- 
+
 .title-homepage {
   color: #15275f;
   font-weight: 600;
   margin: 30px;
   line-height: 1.7;
 }
- 
+
 .background {
   display: flex;
   align-items: center;
   justify-content: center;
 }
- 
+
 .content-title-homepage {
   /* margin-top: -400px; */
   margin-right: 60px;
@@ -145,7 +144,7 @@ section {
   width: 400px;
   border-radius: 7px;
 }
- 
+
 .content-homepage {
   color: #15275f;
   margin-top: 0px;
@@ -154,24 +153,24 @@ section {
   margin-right: 30px;
   line-height: 1.8;
 }
- 
+
 .page-footer {
   background-color: #051139;
   color: white;
 }
- 
+
 .btn-signup {
   color: white;
   border: 1px solid white;
   border-radius: 6px;
 }
- 
+
 .profile-img {
   width: 50px;
   border: 2px solid #15275f;
   border-radius: 45px;
 }
- 
+
 .name-profile {
   margin-left: 12px;
   margin-top: 25px;
@@ -181,17 +180,17 @@ section {
   display: flex;
   justify-content: space-between;
 }
- 
+
 .condition-badge {
   margin-right: 15px;
   margin-top: 18px;
 }
- 
+
 .second-body-card {
   display: flex;
   justify-content: space-between;
 }
- 
+
 .total-results-text {
   margin-top: 30px;
   color: #051139;
@@ -201,7 +200,7 @@ section {
   margin-top: 90px;
   margin-bottom: 30px;
 }
- 
+
 .page-link {
   color: #051139;
 }
@@ -209,7 +208,7 @@ section {
   background-color: #15275f;
   border: 1px solid #15275f;
 }
- 
+
 .btn-new-issue {
   background-color: #007bff;
   border: 2px solid #15275f;
@@ -221,7 +220,7 @@ section {
   margin-bottom: 30px;
   font-weight: 600;
 }
- 
+
 .btn-new-issue:hover {
   background-color: #15275f;
   border: 2px solid #15275f;
@@ -230,12 +229,12 @@ section {
   min-height: 40px;
   font-weight: 600;
 }
- 
- 
+
+
 .repo-card {
   margin-bottom: 50px !important;
 }
- 
+
 .click-me {
   font-weight: 600;
   position: absolute;
@@ -243,32 +242,31 @@ section {
   color: #007bff;
   margin-top: 5px;
 }
- 
+
 .click-me:hover {
   font-weight: 600;
   position: absolute;
   right: 2%;
   color: #15275f;
   margin-top: 5px;
-  margin-top: 5px;
 }
- 
+
 .badge-primary {
   position: absolute;
   right: 2%;
   margin-top: 3px;
 }
- 
+
 .fa-star{
   color: #DF5955;
 }
- 
+
 .stargazers-counts {
   color:#DF5955;
   font-weight: 700;
   margin-top: 16px;
 }
- 
+
 .search-issue-input {
   height: 40px;
   width: 847px;
@@ -279,7 +277,7 @@ section {
   text-align: left;
   display: flex;
 }
- 
+
 .issue-page-area {
   display: flex;
   flex-direction: column;
