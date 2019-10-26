@@ -10,7 +10,7 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
-    console.log(url,"url",data,"data")
+    // console.log(url,"url",data,"data")
   };
 
   const postComment = async comment => {
@@ -57,7 +57,7 @@ function CommentsSection(props) {
     postComment(text);
   };
 
-  const removeComment = async id => {
+  const removeComment = async (id,index) => {
     const url = `https://api.github.com/repos/stevenkeezer/gitissues-r/issues/comments/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
@@ -68,7 +68,11 @@ function CommentsSection(props) {
       }
     });
     console.log(response);
-    getComments();
+    // getComments();
+    console.log(tasks,"tasks")
+    let currenTasks = tasks.filter((el,idx) => idx!==index);
+    console.log(currenTasks,"currenTasks");
+    setTasks(currenTasks);
   };
 
   useEffect(() => {
@@ -90,7 +94,7 @@ function CommentsSection(props) {
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
           </Card>
-          <button onClick={() => removeComment(task.id)}>Remove</button>
+          <button onClick={() => removeComment(task.id,index)}>Remove</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />
