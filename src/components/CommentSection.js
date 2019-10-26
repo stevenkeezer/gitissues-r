@@ -10,6 +10,7 @@ function CommentsSection(props) {
     const result = await fetch(url);
     const data = await result.json();
     setTasks(data);
+
     // console.log(url, "url", data, "data");
   };
 
@@ -56,21 +57,22 @@ function CommentsSection(props) {
     postComment(text);
   };
 
-  const removeComment = async (id, login) => {
-    if (props.propsRepoUrl.includes(login)) {
-      const url = `${props.propsRepoUrl}/issues/comments/${id}`;
-      const response = await fetch(url, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `token ${props.accessToken}`,
-          Accept: "application/vnd.github.golden-comet-preview+json"
-        }
-      });
-      getComments();
-    } else {
-      alert("You cant modify that comment");
-    }
+  const removeComment = async (id,index) => {
+    const url = `https://api.github.com/repos/stevenkeezer/gitissues-r/issues/comments/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `token ${props.accessToken}`,
+        Accept: "application/vnd.github.golden-comet-preview+json"
+      }
+    });
+    console.log(response);
+    // getComments();
+    console.log(tasks,"tasks")
+    let currenTasks = tasks.filter((el,idx) => idx!==index);
+    console.log(currenTasks,"currenTasks");
+    setTasks(currenTasks);
   };
 
   useEffect(() => {
@@ -91,8 +93,8 @@ function CommentsSection(props) {
             <Card.Body>
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
-          </Card> 
-          <button onClick={() => removeComment(task.id)}>🗑️ Remove</button>
+          </Card>
+          <button onClick={() => removeComment(task.id,index)}>Remove</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />
