@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function RepoCard(props) {
-  console.log(props.repo);
   return (
     <Card className="mb-2 repo-card">
       <Card.Header>👽 <a href={props.repo.owner.html_url}>{props.repo.owner.login}</a> / <a href={props.repo.html_url}>{props.repo.name}</a>

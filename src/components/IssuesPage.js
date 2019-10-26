@@ -26,7 +26,11 @@ export default function IssuesPage(props) {
       <div className="issues-cards">
         {issuesFilter(props.issues, searchName).map(issue => (
           <IssueCard
-          issue={issue} 
+            setShowComments={props.setShowComments}
+            setShowIssues={props.setShowIssues}
+            setCommentId={props.setCommentId}
+            setPropsRepoUrl={props.setPropsRepoUrl}
+            issue={issue}
           />
         ))}
       </div>
