@@ -24,7 +24,7 @@ export default function RepoPage(props) {
   if(!props.repo) return "We cant found any search result for this"
   return (
     <div>
-      <h1>Current have {props.totalSearchResult} pages</h1>
+      <h1 className="total-results-text">🛸 Current have {props.totalSearchResult} pages 🛸</h1>
       <Pagination>
         <Pagination.First onClick={() => handleOnChange(1)} />
         <Pagination.Prev onClick={() => {if(props.currentPage !== 1) handleOnChange(props.currentPage-1)}} />

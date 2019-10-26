@@ -39,13 +39,13 @@ function CommentsSection(props) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <input
+        <input className="input-comment-content"
           type="text"
           value={value}
           placeholder="Enter a comment…"
           onChange={e => setValue(e.target.value)}
         />
-        <button type="submit">Enter</button>
+        <button className="btn-enter-comment"type="submit">Enter</button>
       </form>
     );
   };
@@ -76,7 +76,7 @@ function CommentsSection(props) {
 
   return (
     <div className="todo-list mx-auto">
-      Comments
+      <h2>Comments</h2>
       {tasks.length < 1 && <div>Be the first one to add a comment</div>}
       {tasks.map((task, index) => (
         <div className="todo">
@@ -88,8 +88,8 @@ function CommentsSection(props) {
             <Card.Body>
               <Card.Text>{task.body}</Card.Text>
             </Card.Body>
-          </Card>
-          <button onClick={() => removeComment(task.id)}>Remove</button>
+          </Card> 
+          <button onClick={() => removeComment(task.id)}>🗑️ Remove</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />

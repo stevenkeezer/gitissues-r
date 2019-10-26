@@ -11,7 +11,7 @@ function IssueCard(props) {
   };
 
   return (
-    <Card className="mb-2">
+    <Card className="mb-2 issue-card">
       <Card.Header onClick={handleClick} className="header-card">
         <Col>
           #{props.issue.number} {props.issue.title}

@@ -24,6 +24,9 @@ export default function IssuesPage(props) {
           onChange={event => handleOnChange(event)}
         />
       </div>
+      <div className="issues-form">
+          <Button className="btn-new-issue" onClick={() => props.setShowCreateIssues(true)}>+ Create New Issue</Button>
+      </div>
       <div className="issues-cards">
         {issuesFilter(props.issues, searchName).map(issue => (
           <IssueCard
@@ -34,9 +37,6 @@ export default function IssuesPage(props) {
             issue={issue}
           />
         ))}
-      </div>
-      <div className="issues-form">
-          <Button onClick={() => props.setShowCreateIssues(true)}>Click me to create issue</Button>
       </div>
     </div>
   );
