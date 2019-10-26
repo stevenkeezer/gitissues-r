@@ -30,10 +30,10 @@ function App() {
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [issueName, setIssueName] = useState(
     "react-native-community/react-native-navbar"
-  );
+  ); 
   const [token, setToken] = useState("");
-
-  const [modalShow, setModalShow] = React.useState(false);
+  const [showCreateIssues, setShowCreateIssues] = useState(false)
+  const [repoToCreateIssue, setRepoToCreateIssue] = useState("stevenkeezer/gitissues-r")
 
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
@@ -134,7 +134,15 @@ function App() {
           </div> */}
           <Col>
             <Row>
-              {showIssues && <IssuesPage issues={issues} />}
+              {showCreateIssues && <NewIssueModal
+                accessToken={token}
+                setShowCreateIssues={setShowCreateIssues}
+                repoToCreateIssue={issueName}
+              />}
+              {showIssues && <IssuesPage
+              setRepoToCreateIssue={setRepoToCreateIssue}
+              setShowCreateIssues={setShowCreateIssues}
+              issues={issues} />}
               {showRepo && (
                 <RepoPage
                   search={search}
