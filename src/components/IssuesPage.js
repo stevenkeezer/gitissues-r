@@ -16,9 +16,10 @@ export default function IssuesPage(props) {
 
   if (!props.issues) return "Error while loading API";
   return (
-    <div className="container">
+    <div className="container issue-page-area">
       <div className="issues-searchbar">
         <input
+          className="search-issue-input"
           placeholder="Search issue by name..."
           onChange={event => handleOnChange(event)}
         />

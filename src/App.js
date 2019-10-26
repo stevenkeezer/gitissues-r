@@ -124,6 +124,7 @@ function App() {
                 accessToken={token}
                 setShowCreateIssues={setShowCreateIssues}
                 repoToCreateIssue={issueName}
+                getIssues={getIssues}
               />}
               {showComments && (
                 <CommentSection
