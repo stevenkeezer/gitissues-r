@@ -140,6 +140,7 @@ function App() {
                   issues={issues}
                   setCommentId={setCommentId}
                   setPropsRepoUrl={setPropsRepoUrl}
+                  setShowCreateIssues={setShowCreateIssues}
                 />
               )}
               {showRepo && (
