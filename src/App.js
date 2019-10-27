@@ -15,6 +15,7 @@ import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
 import HomePage from "./components/HomePage";
+import MainNavbar from "./components/MainNavbar";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
@@ -33,10 +34,12 @@ function App() {
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [issueName, setIssueName] = useState(
     "react-native-community/react-native-navbar"
-  ); 
+  );
   const [token, setToken] = useState("");
-  const [showCreateIssues, setShowCreateIssues] = useState(false)
-  const [repoToCreateIssue, setRepoToCreateIssue] = useState("stevenkeezer/gitissues-r")
+  const [showCreateIssues, setShowCreateIssues] = useState(false);
+  const [repoToCreateIssue, setRepoToCreateIssue] = useState(
+    "stevenkeezer/gitissues-r"
+  );
 
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
@@ -97,7 +100,7 @@ function App() {
     if (accessToken) {
       // console.log(`New accessToken: ${accessToken}`);
       setToken(accessToken.split("&")[0]);
-      sessionStorage.setItem("token", accessToken);
+      // sessionStorage.setItem("token", accessToken);
     }
 
     // this.state = {
@@ -106,7 +109,7 @@ function App() {
 
     if (existingToken) {
       setToken(existingToken.split("&")[0]);
-      sessionStorage.setItem("token", existingToken);
+      // sessionStorage.setItem("token", existingToken);
       // this.state = {
       //   token: existingToken
       // };
@@ -117,16 +120,39 @@ function App() {
       {!showComments && !showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
       )}
+      {showComments && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
+      )}
+      {showIssues && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
+      )}
+      {showRepo && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
+      )}
       <Container>
         <Row>
           <Col>
             <Row>
-              {showCreateIssues && <NewIssueModal
-                accessToken={token}
-                setShowCreateIssues={setShowCreateIssues}
-                repoToCreateIssue={issueName}
-                getIssues={getIssues}
-              />}
+              {showCreateIssues && (
+                <NewIssueModal
+                  accessToken={token}
+                  setShowCreateIssues={setShowCreateIssues}
+                  repoToCreateIssue={issueName}
+                  getIssues={getIssues}
+                />
+              )}
               {showComments && (
                 <CommentSection
                   issues={issues}
@@ -167,15 +193,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <input
-                name="search"
-                width="30px"
-                type="text"
-                id="findOnPage"
-                onChange={event => findOnPage(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Find on page..."
-              /> */
-}

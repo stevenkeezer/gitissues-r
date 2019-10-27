@@ -22,7 +22,7 @@ http
         },
         (err, r, body) => {
           res.writeHead(301, {
-            Location: "https://brave-easley-a3c759.netlify.com/?" + body
+            Location: "http://localhost:3000/?" + body
           });
           res.end();
         }

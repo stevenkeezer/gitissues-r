@@ -3,7 +3,6 @@ import { Badge, Card, Col } from "react-bootstrap";
 import Markdown from "markdown-to-jsx";
 
 function IssueCard(props) {
-  console.log(props.issue && props.issue);
   const handleClick = () => {
     props.setShowIssues(false);
     props.setShowComments(true);

@@ -1,3 +1,4 @@
+            Location: "http://localhost:3000/?" + body
 
 ### Required Features 🎯
 
@@ -7,9 +8,9 @@
 
 - [x] The user should be able to see the following information for each issue:
 
-Issue Title * Number of the issue
+Issue Title _ Number of the issue
 Owner of the Issue
-Owner Avatar * How long ago the issue was created in a human-friendly format (e.g. 2 days ago)
+Owner Avatar _ How long ago the issue was created in a human-friendly format (e.g. 2 days ago)
 Body of the Issue
 Label - note the color as returned by the API.
 State of Issue (Open/Closed).
@@ -30,4 +31,4 @@ State of Issue (Open/Closed).
 - [ ] Input Fuzzy Matching: the user should be able to type in either https://github.com/facebook/react or facebook/react, BOTH should work.
 
 - [ ] Instead of using Modal to show issue, use React Router (link) to navigate to different URL issues/:issueId to display the full issue. Have the Back button to go back to the previous page (from the individual issue page).
->>>>>>> 989268236e1f2311e0f00fd6f209991eb35b5031
+  > > > > > > > 989268236e1f2311e0f00fd6f209991eb35b5031
