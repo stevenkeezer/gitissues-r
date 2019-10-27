@@ -16,15 +16,18 @@ function IssueCard(props) {
         <Col>
           #{props.issue.number} {props.issue.title}
           <br></br>
+          Opened by
           <a className="name-profile" href={props.issue.user.html_url}>
-            Opened by {props.issue.user.login}
+            {props.issue.user.login}
           </a>
         </Col>
         <div
           style={{ marginRight: "50px", marginTop: "2px", cursor: "pointer" }}
           onClick={handleClick}
         >
-          💬
+          <span aria-label="img" role="img">
+            💬
+          </span>
         </div>
         <Badge
           className="status-badge"

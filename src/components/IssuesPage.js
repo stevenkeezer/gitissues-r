@@ -16,16 +16,16 @@ export default function IssuesPage(props) {
 
   if (!props.issues) return "Error while loading API";
   return (
-    <div className="container issue-page-area">
+    <div className="issue-container">
       <h1 id="issueBanner">All Issues</h1>
-      <div className="issues-searchbar">
-        <input
-          className="search-issue-input"
-          placeholder="Search issue by name..."
-          onChange={event => handleOnChange(event)}
-        />
-      </div>
-      <div className="issues-form">
+      <div className="input-group pt-4 mx-auto">
+        <div className="issues-searchbar mx-auto">
+          <input
+            className="search-issue-input"
+            placeholder="Search issue by name..."
+            onChange={event => handleOnChange(event)}
+          />
+        </div>
         <Button
           className="btn-new-issue"
           onClick={() => props.setShowCreateIssues(true)}
@@ -33,7 +33,7 @@ export default function IssuesPage(props) {
           + Create New Issue
         </Button>
       </div>
-      <div className="issues-cards">
+      <div className="issue-cards mx-auto">
         {issuesFilter(props.issues, searchName).map(issue => (
           <IssueCard
             setShowComments={props.setShowComments}
