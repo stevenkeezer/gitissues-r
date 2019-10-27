@@ -48,6 +48,27 @@
   .card {
     min-width: 100%;
   }
+
+  .issues-cards {
+    min-width: 100% !important;
+  }
+  .search-issue-input {
+    width: 290px !important;
+  }
+
+  .btn-new-issue {
+    margin: auto;
+  }
+  .background-home-img {
+    width: 90px !important;
+    height: 80px !important;
+    margin-top: -220px !important;
+    margin-left: -120px !important;
+  }
+  .content-title-homepage {
+    margin-right: 0px !important;
+    margin-top: -200px !important;
+  }
 }
 
 .pagination {
@@ -71,6 +92,7 @@
 }
 .card-header {
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 .row {
@@ -97,7 +119,11 @@
 
 .issue-card {
   margin-top: 30px;
-  width: 870px;
+  max-width: 870px;
+}
+
+.issue-cards {
+  max-width: 100vw;
 }
 
 .logo {
@@ -216,18 +242,6 @@ section {
   border: 1px solid #15275f;
 }
 
-.btn-new-issue {
-  background-color: #007bff;
-  border: 2px solid #15275f;
-  border-radius: 5px;
-  min-height: 40px;
-  position: absolute;
-  left: 43%;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-weight: 600;
-}
-
 .btn-new-issue:hover {
   background-color: #15275f;
   border: 2px solid #15275f;
@@ -275,11 +289,10 @@ section {
 
 .search-issue-input {
   height: 40px;
-  width: 847px;
+  width: 690px;
   font-size: 16px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  margin-top: 50px;
   text-align: left;
   display: flex;
 }
@@ -384,4 +397,20 @@ section {
 
 #commentHeader {
   text-align: center !important;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#firstComment {
+  text-align: center;
+}
+
+.todo {
+  width: 100%;
+}
+
+.issue-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }

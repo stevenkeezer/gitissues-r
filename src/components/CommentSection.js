@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Alert } from "react-bootstrap";
 import MainNavbar from "../components/MainNavbar";
 
 import "./CommentSection.css";
@@ -60,8 +60,9 @@ function CommentsSection(props) {
     postComment(text);
   };
 
-  const removeComment = async (id, index) => {
-    const url = `https://api.github.com/repos/stevenkeezer/gitissues-r/issues/comments/${id}`;
+  const removeComment = async (id, index, login) => {
+    const url = `${props.propsRepoUrl}/issues/comments/${id}`;
+    console.log(url, login);
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
@@ -70,12 +71,12 @@ function CommentsSection(props) {
         Accept: "application/vnd.github.golden-comet-preview+json"
       }
     });
-    console.log(response);
-    // getComments();
-    console.log(tasks, "tasks");
-    let currenTasks = tasks.filter((el, idx) => idx !== index);
-    console.log(currenTasks, "currenTasks");
-    setTasks(currenTasks);
+    if (!props.propsRepoUrl.includes(login)) {
+      alert("You can't delete this comment");
+    } else {
+      let currenTasks = tasks.filter((el, idx) => idx !== index);
+      setTasks(currenTasks);
+    }
   };
 
   useEffect(() => {
@@ -84,11 +85,13 @@ function CommentsSection(props) {
 
   return (
     <div>
-      <div className="todo-list mx-auto">
-        <div className="commentHeader">
+      <div className="todo-list mx-auto ">
+        <div className="commentHeader p-2 pt-3 pl-3">
           <h2>Comments</h2>
         </div>
-        {tasks.length < 1 && <div>Be the first one to add a comment</div>}
+        {tasks.length < 1 && (
+          <div id="firstComment">Be the first one to add a comment</div>
+        )}
         {tasks.map((task, index) => (
           <div className="todo">
             <Card>
@@ -101,7 +104,7 @@ function CommentsSection(props) {
               </Card.Body>
               <button
                 id="removeBtn"
-                onClick={() => removeComment(task.id, index)}
+                onClick={() => removeComment(task.id, index, task.user.login)}
               >
                 Remove
               </button>
