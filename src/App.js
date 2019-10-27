@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import {
   Form,
   Button,
@@ -16,6 +17,8 @@ import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
 import HomePage from "./components/HomePage";
 import MainNavbar from "./components/MainNavbar";
+import Loader from "react-loader-spinner";
+
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
@@ -115,6 +118,20 @@ function App() {
       // };
     }
   }, []);
+  if (issues.length === 0) {
+    return (
+      <div>
+        <Loader
+          className="spinner"
+          type="TailSpin"
+          color="#00BFFF"
+          height={50}
+          width={50}
+          // timeout={3000} //3 secs
+        />
+      </div>
+    );
+  }
   return (
     <div className="App">
       {!showComments && !showIssues && !showRepo && (
