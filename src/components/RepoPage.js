@@ -29,6 +29,7 @@ export default function RepoPage(props) {
     }
   }
   if (!props.repo) return "We cant found any search result for this";
+
   return (
     <div>
       <h1 className="total-results-text">
