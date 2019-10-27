@@ -60,7 +60,6 @@ function CommentsSection(props) {
   };
 
   const removeComment = async (id, login) => {
-    console.log(props.propsRepoUrl, login);
     if (props.propsRepoUrl.includes(login)) {
       const url = `${props.propsRepoUrl}/issues/comments/${id}`;
       const response = await fetch(url, {
