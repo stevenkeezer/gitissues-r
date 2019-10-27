@@ -15,6 +15,7 @@ import MainSideBar from "./components/MainSideBar";
 import IssuesPage from "./components/IssuesPage";
 import CommentSection from "./components/CommentSection";
 import HomePage from "./components/HomePage";
+import MainNavbar from "./components/MainNavbar";
 import "./App.css";
 
 const clientId = "57091af873a54cbc4d71";
@@ -118,6 +119,27 @@ function App() {
     <div className="App">
       {!showComments && !showIssues && !showRepo && (
         <HomePage search={search} handleChange={handleChange} />
+      )}
+      {showComments && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
+      )}
+      {showIssues && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
+      )}
+      {showRepo && (
+        <MainNavbar
+          setShowIssues={setShowIssues}
+          setShowComments={setShowComments}
+          setShowRepo={setShowRepo}
+        />
       )}
       <Container>
         <Row>
