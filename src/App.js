@@ -33,10 +33,12 @@ function App() {
   const [totalSearchResult, setTotalSearchResult] = useState(0);
   const [issueName, setIssueName] = useState(
     "react-native-community/react-native-navbar"
-  ); 
+  );
   const [token, setToken] = useState("");
-  const [showCreateIssues, setShowCreateIssues] = useState(false)
-  const [repoToCreateIssue, setRepoToCreateIssue] = useState("stevenkeezer/gitissues-r")
+  const [showCreateIssues, setShowCreateIssues] = useState(false);
+  const [repoToCreateIssue, setRepoToCreateIssue] = useState(
+    "stevenkeezer/gitissues-r"
+  );
 
   const getIssues = async () => {
     const url = `https://api.github.com/repos/${issueName}/issues`;
@@ -97,15 +99,16 @@ function App() {
     if (accessToken) {
       // console.log(`New accessToken: ${accessToken}`);
       setToken(accessToken.split("&")[0]);
+      // sessionStorage.setItem("token", accessToken);
     }
 
-    sessionStorage.setItem("token", token);
     // this.state = {
     //   token: accessToken
     // };
 
     if (existingToken) {
-      setToken(accessToken.split("&")[0]);
+      setToken(existingToken.split("&")[0]);
+      // sessionStorage.setItem("token", existingToken);
       // this.state = {
       //   token: existingToken
       // };
@@ -120,12 +123,14 @@ function App() {
         <Row>
           <Col>
             <Row>
-              {showCreateIssues && <NewIssueModal
-                accessToken={token}
-                setShowCreateIssues={setShowCreateIssues}
-                repoToCreateIssue={issueName}
-                getIssues={getIssues}
-              />}
+              {showCreateIssues && (
+                <NewIssueModal
+                  accessToken={token}
+                  setShowCreateIssues={setShowCreateIssues}
+                  repoToCreateIssue={issueName}
+                  getIssues={getIssues}
+                />
+              )}
               {showComments && (
                 <CommentSection
                   issues={issues}
@@ -166,15 +171,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <input
-                name="search"
-                width="30px"
-                type="text"
-                id="findOnPage"
-                onChange={event => findOnPage(event.target.value)}
-                className="form-control input-lg"
-                placeholder="Find on page..."
-              /> */
-}
