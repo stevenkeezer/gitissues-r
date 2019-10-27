@@ -1,9 +1,9 @@
 
 ### Required Features 🎯
 
-- [ ] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format owner/repo-name, e.g. facebook/react.
+- [x] The user can enter a repository in a search bar, click "search", and see the associated issues. The repository should be of the format owner/repo-name, e.g. facebook/react.
 
-- [ ] If the repository does not exist, the user should see a proper error message.
+- [x] If the repository does not exist, the user should see a proper error message.
 
 - [x] The user should be able to see the following information for each issue:
 
@@ -20,9 +20,9 @@ State of Issue (Open/Closed).
 
 - [ ] The user can see more details (including comments!) in a modal that's opened by clicking on the title of the issue.
 
-- [ ] The user, upon opening this modal, can add a comment via a textarea at the bottom of the page.
+- [x] The user, upon opening this modal, can add a comment via a textarea at the bottom of the page.
 
-- [ ] The user, upon opening the modal, can close the issue. If the person does not have the appropriate access to close an issue, the user sees a nicely formatted error message.
+- [x] The user, upon opening the modal, can close the issue. If the person does not have the appropriate access to close an issue, the user sees a nicely formatted error message.
 
 - [ ] The user can see reactions attached to each comment (Reactions API).
 - [ ] The user can add reactions to a comment (API documentation).
