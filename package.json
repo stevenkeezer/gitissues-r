@@ -21,7 +21,7 @@
     "remove-markdown": "^0.3.0",
     "request": "^2.88.0",
     "simple-react-comments": "^1.1.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
